@@ -4,6 +4,15 @@ Este log registra todas las tareas, análisis, endpoints y desarrollos realizado
 
 ---
 
+### 2026-08-04 - Inventario Excel APERP regenerado
+
+* **Objetivo:** Regenerar el inventario de migración APERP tomando solo el formato visual del inventario GX8 de CONEX.
+* **Resultado:** Se creó `Inventario_GX18_APERP_Actualizado_2026-08-04.xlsx` con resumen y 15 hojas pobladas desde el estudio del XPZ APERP.
+* **Contenido:** Objetos, procedimientos, transacciones, paneles, tablas, atributos, dependencias, grupos, carpetas, revisión general, hoja de migración de procedimientos y estado de maestros.
+* **Verificación:** Se renderizaron las 15 hojas y el análisis de fórmulas no encontró errores.
+
+---
+
 ### 2026-08-03 - Alineacion del maestro Empresa con APERP
 
 * **Incidente:** El mantenedor apuntaba a `DEFEMP`, tabla del modelo CONEX que no existe en `BDAPERP`.
