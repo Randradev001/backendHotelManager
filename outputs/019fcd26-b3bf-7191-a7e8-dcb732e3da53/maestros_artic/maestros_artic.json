@@ -1,0 +1,981 @@
+{
+  "count": 57,
+  "typeCounts": [
+    [
+      "Data Selector",
+      8
+    ],
+    [
+      "Procedure",
+      18
+    ],
+    [
+      "Transaction",
+      8
+    ],
+    [
+      "Web Panel",
+      15
+    ],
+    [
+      "WorkWithPlus",
+      8
+    ]
+  ],
+  "rows": [
+    {
+      "type": "Data Selector",
+      "name": "BusArtGDS",
+      "fqn": "bod.BusArtGDS",
+      "description": "Bus Art GDS",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusBusArtG",
+      "parts": [
+        "a2bc65a1-999f-4e9b-b837-72285cc9bb16",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-11T19:24:16.0000000Z"
+    },
+    {
+      "type": "Data Selector",
+      "name": "CorMatWWDS",
+      "fqn": "bod.CorMatWWDS",
+      "description": "Cor Mat WWDS",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusCorMat",
+      "parts": [
+        "a2bc65a1-999f-4e9b-b837-72285cc9bb16",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T16:05:06.0000000Z"
+    },
+    {
+      "type": "Data Selector",
+      "name": "FamTipoWWDS",
+      "fqn": "bod.FamTipoWWDS",
+      "description": "Fam Tipo WWDS",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFamTipo",
+      "parts": [
+        "a2bc65a1-999f-4e9b-b837-72285cc9bb16",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T18:21:02.0000000Z"
+    },
+    {
+      "type": "Data Selector",
+      "name": "FamWWDS",
+      "fqn": "bod.FamWWDS",
+      "description": "Fam WWDS",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFam",
+      "parts": [
+        "a2bc65a1-999f-4e9b-b837-72285cc9bb16",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T17:14:05.0000000Z"
+    },
+    {
+      "type": "Data Selector",
+      "name": "GruWWDS",
+      "fqn": "bod.GruWWDS",
+      "description": "Gru WWDS",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusGru",
+      "parts": [
+        "a2bc65a1-999f-4e9b-b837-72285cc9bb16",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-10T16:21:26.0000000Z"
+    },
+    {
+      "type": "Data Selector",
+      "name": "MaeArtWWDS",
+      "fqn": "bod.MaeArtWWDS",
+      "description": "Mae Art WWDS",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusMaeArt",
+      "parts": [
+        "a2bc65a1-999f-4e9b-b837-72285cc9bb16",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:51:17.0000000Z"
+    },
+    {
+      "type": "Data Selector",
+      "name": "PrecEspeWWDS",
+      "fqn": "bod.PrecEspeWWDS",
+      "description": "Prec Espe WWDS",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusPrecEspe",
+      "parts": [
+        "a2bc65a1-999f-4e9b-b837-72285cc9bb16",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:13:21.0000000Z"
+    },
+    {
+      "type": "Data Selector",
+      "name": "SalApeWWDS",
+      "fqn": "bod.SalApeWWDS",
+      "description": "Sal Ape WWDS",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusSalApe",
+      "parts": [
+        "a2bc65a1-999f-4e9b-b837-72285cc9bb16",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:20:47.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "BusArtGGetFilterData",
+      "fqn": "bod.BusArtGGetFilterData",
+      "description": "Bus Art GGet Filter Data",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusBusArtG",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-11T19:24:16.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "CestCArt",
+      "fqn": "bod.CestCArt",
+      "description": "Cambia estado contabiliza",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-02-26T19:58:43.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "CorMatWWExport",
+      "fqn": "bod.CorMatWWExport",
+      "description": "Cor Mat WWExport",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusCorMat",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T16:06:52.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "CreaRT",
+      "fqn": "bod.CreaRT",
+      "description": "CreaRT",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-02-26T19:59:38.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "FamTipoWWExport",
+      "fqn": "bod.FamTipoWWExport",
+      "description": "Fam Tipo WWExport",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFamTipo",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:01:36.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "FamTipoWWGetFilterData",
+      "fqn": "bod.FamTipoWWGetFilterData",
+      "description": "Fam Tipo WWGet Filter Data",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFamTipo",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T18:21:02.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "FamWWExport",
+      "fqn": "bod.FamWWExport",
+      "description": "Fam WWExport",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFam",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T17:16:27.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "FamWWGetFilterData",
+      "fqn": "bod.FamWWGetFilterData",
+      "description": "Fam WWGet Filter Data",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFam",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T17:14:05.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "GruWWExport",
+      "fqn": "bod.GruWWExport",
+      "description": "Gru WWExport",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusGru",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:04:37.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "GruWWGetFilterData",
+      "fqn": "bod.GruWWGetFilterData",
+      "description": "Gru WWGet Filter Data",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusGru",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:03:10.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "MaeArtWWExport",
+      "fqn": "bod.MaeArtWWExport",
+      "description": "Mae Art WWExport",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusMaeArt",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T20:02:19.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "MaeArtWWGetFilterData",
+      "fqn": "bod.MaeArtWWGetFilterData",
+      "description": "Mae Art WWGet Filter Data",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusMaeArt",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:51:17.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "PrecEspeWWExport",
+      "fqn": "bod.PrecEspeWWExport",
+      "description": "Prec Espe WWExport",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusPrecEspe",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:15:45.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "PrecEspeWWGetFilterData",
+      "fqn": "bod.PrecEspeWWGetFilterData",
+      "description": "Prec Espe WWGet Filter Data",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusPrecEspe",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:13:21.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "SalApeWWExport",
+      "fqn": "bod.SalApeWWExport",
+      "description": "Sal Ape WWExport",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusSalApe",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:22:45.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "SalApeWWGetFilterData",
+      "fqn": "bod.SalApeWWGetFilterData",
+      "description": "Sal Ape WWGet Filter Data",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusSalApe",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:20:47.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "TraeArtDes",
+      "fqn": "bod.TraeArtDes",
+      "description": "Trae Art Des",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-02-26T20:02:28.0000000Z"
+    },
+    {
+      "type": "Procedure",
+      "name": "TraeTM",
+      "fqn": "bod.TraeTM",
+      "description": "Trae Tipo Material",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "528d1c06-a9c2-420d-bd35-21dca83f12ff",
+        "c414ed00-8cc4-4f44-8820-4baf93547173",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-02-25T18:46:12.0000000Z"
+    },
+    {
+      "type": "Transaction",
+      "name": "ArtCodB",
+      "fqn": "bod.ArtCodB",
+      "description": "ArtCodB",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "264be5fb-1b28-4b25-a598-6ca900dd059f",
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "4c28dfb9-f83b-46f0-9cf3-f7e090b525d5",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-02-25T18:46:21.0000000Z"
+    },
+    {
+      "type": "Transaction",
+      "name": "CorMat",
+      "fqn": "bod.CorMat",
+      "description": "CorMat",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "264be5fb-1b28-4b25-a598-6ca900dd059f",
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "4c28dfb9-f83b-46f0-9cf3-f7e090b525d5",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T16:06:52.0000000Z"
+    },
+    {
+      "type": "Transaction",
+      "name": "Fam",
+      "fqn": "bod.Fam",
+      "description": "Fam",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "264be5fb-1b28-4b25-a598-6ca900dd059f",
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "4c28dfb9-f83b-46f0-9cf3-f7e090b525d5",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T17:16:27.0000000Z"
+    },
+    {
+      "type": "Transaction",
+      "name": "FamTipo",
+      "fqn": "bod.FamTipo",
+      "description": "Tipos de Familias",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "264be5fb-1b28-4b25-a598-6ca900dd059f",
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "4c28dfb9-f83b-46f0-9cf3-f7e090b525d5",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:01:36.0000000Z"
+    },
+    {
+      "type": "Transaction",
+      "name": "Gru",
+      "fqn": "bod.Gru",
+      "description": "Gru",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "264be5fb-1b28-4b25-a598-6ca900dd059f",
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "4c28dfb9-f83b-46f0-9cf3-f7e090b525d5",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-10T16:21:26.0000000Z"
+    },
+    {
+      "type": "Transaction",
+      "name": "MaeArt",
+      "fqn": "bod.MaeArt",
+      "description": "Maestro de Articulos",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "264be5fb-1b28-4b25-a598-6ca900dd059f",
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "4c28dfb9-f83b-46f0-9cf3-f7e090b525d5",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T20:02:19.0000000Z"
+    },
+    {
+      "type": "Transaction",
+      "name": "PrecEspe",
+      "fqn": "bod.PrecEspe",
+      "description": "Precios Especiales",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "264be5fb-1b28-4b25-a598-6ca900dd059f",
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "4c28dfb9-f83b-46f0-9cf3-f7e090b525d5",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:15:45.0000000Z"
+    },
+    {
+      "type": "Transaction",
+      "name": "SalApe",
+      "fqn": "bod.SalApe",
+      "description": "Saldos de Apertura",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "264be5fb-1b28-4b25-a598-6ca900dd059f",
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "4c28dfb9-f83b-46f0-9cf3-f7e090b525d5",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:22:45.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "BusArtG",
+      "fqn": "bod.BusArtG",
+      "description": "Maestro de Articulos",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Maestros_Artic",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-11T19:51:10.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "CorMatPrompt",
+      "fqn": "bod.CorMatPrompt",
+      "description": "Selecciona CorMat",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusCorMat",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T16:05:06.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "CorMatWW",
+      "fqn": "bod.CorMatWW",
+      "description": "CorMat",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusCorMat",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T16:06:52.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "FamPrompt",
+      "fqn": "bod.FamPrompt",
+      "description": "Selecciona Fam",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFam",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T17:14:05.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "FamTipoPrompt",
+      "fqn": "bod.FamTipoPrompt",
+      "description": "Selecciona Tipos de Familias",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFamTipo",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T18:21:02.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "FamTipoWW",
+      "fqn": "bod.FamTipoWW",
+      "description": "Tipos de Familias",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFamTipo",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:01:36.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "FamWW",
+      "fqn": "bod.FamWW",
+      "description": "Fam",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusFam",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T17:16:27.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "GruPrompt",
+      "fqn": "bod.GruPrompt",
+      "description": "Selecciona Gru",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusGru",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-10T16:21:26.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "GruWW",
+      "fqn": "bod.GruWW",
+      "description": "Gru",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusGru",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:04:37.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "MaeArtPrompt",
+      "fqn": "bod.MaeArtPrompt",
+      "description": "Selecciona Maestro de Articulos",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusMaeArt",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:51:17.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "MaeArtWW",
+      "fqn": "bod.MaeArtWW",
+      "description": "Maestro de Articulos",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusMaeArt",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T20:02:19.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "PrecEspePrompt",
+      "fqn": "bod.PrecEspePrompt",
+      "description": "Selecciona Precios Especiales",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusPrecEspe",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:13:21.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "PrecEspeWW",
+      "fqn": "bod.PrecEspeWW",
+      "description": "Precios Especiales",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusPrecEspe",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:15:45.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "SalApePrompt",
+      "fqn": "bod.SalApePrompt",
+      "description": "Selecciona Saldos de Apertura",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusSalApe",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:20:47.0000000Z"
+    },
+    {
+      "type": "Web Panel",
+      "name": "SalApeWW",
+      "fqn": "bod.SalApeWW",
+      "description": "Saldos de Apertura",
+      "folder": "Maestros_Artic",
+      "parent": "bod.WorkWithPlusSalApe",
+      "parts": [
+        "d24a58ad-57ba-41b7-9e6e-eaca3543c778",
+        "9b0a32a3-de6d-4be1-a4dd-1b85d3741534",
+        "c44bd5ff-f918-415b-98e6-aca44fed84fa",
+        "763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9",
+        "e4c4ade7-53f0-4a56-bdfd-843735b66f47",
+        "ad3ca970-19d0-44e1-a7b7-db05556e820c",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:22:45.0000000Z"
+    },
+    {
+      "type": "WorkWithPlus",
+      "name": "WorkWithPlusBusArtG",
+      "fqn": "bod.WorkWithPlusBusArtG",
+      "description": "Work With Plus Bus Art G",
+      "folder": "Maestros_Artic",
+      "parent": "bod.BusArtG",
+      "parts": [
+        "a51ced48-7bee-0001-ab12-04e9e32123d1",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-11T19:51:10.0000000Z"
+    },
+    {
+      "type": "WorkWithPlus",
+      "name": "WorkWithPlusCorMat",
+      "fqn": "bod.WorkWithPlusCorMat",
+      "description": "Work With Plus Cor Mat",
+      "folder": "Maestros_Artic",
+      "parent": "bod.CorMat",
+      "parts": [
+        "a51ced48-7bee-0001-ab12-04e9e32123d1",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T16:06:52.0000000Z"
+    },
+    {
+      "type": "WorkWithPlus",
+      "name": "WorkWithPlusFam",
+      "fqn": "bod.WorkWithPlusFam",
+      "description": "Work With Plus Fam",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Fam",
+      "parts": [
+        "a51ced48-7bee-0001-ab12-04e9e32123d1",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T17:16:27.0000000Z"
+    },
+    {
+      "type": "WorkWithPlus",
+      "name": "WorkWithPlusFamTipo",
+      "fqn": "bod.WorkWithPlusFamTipo",
+      "description": "Work With Plus Fam Tipo",
+      "folder": "Maestros_Artic",
+      "parent": "bod.FamTipo",
+      "parts": [
+        "a51ced48-7bee-0001-ab12-04e9e32123d1",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:01:36.0000000Z"
+    },
+    {
+      "type": "WorkWithPlus",
+      "name": "WorkWithPlusGru",
+      "fqn": "bod.WorkWithPlusGru",
+      "description": "Work With Plus Gru",
+      "folder": "Maestros_Artic",
+      "parent": "bod.Gru",
+      "parts": [
+        "a51ced48-7bee-0001-ab12-04e9e32123d1",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:04:37.0000000Z"
+    },
+    {
+      "type": "WorkWithPlus",
+      "name": "WorkWithPlusMaeArt",
+      "fqn": "bod.WorkWithPlusMaeArt",
+      "description": "Work With Plus Mae Art",
+      "folder": "Maestros_Artic",
+      "parent": "bod.MaeArt",
+      "parts": [
+        "a51ced48-7bee-0001-ab12-04e9e32123d1",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T20:02:19.0000000Z"
+    },
+    {
+      "type": "WorkWithPlus",
+      "name": "WorkWithPlusPrecEspe",
+      "fqn": "bod.WorkWithPlusPrecEspe",
+      "description": "Work With Plus Prec Espe",
+      "folder": "Maestros_Artic",
+      "parent": "bod.PrecEspe",
+      "parts": [
+        "a51ced48-7bee-0001-ab12-04e9e32123d1",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:15:45.0000000Z"
+    },
+    {
+      "type": "WorkWithPlus",
+      "name": "WorkWithPlusSalApe",
+      "fqn": "bod.WorkWithPlusSalApe",
+      "description": "Work With Plus Sal Ape",
+      "folder": "Maestros_Artic",
+      "parent": "bod.SalApe",
+      "parts": [
+        "a51ced48-7bee-0001-ab12-04e9e32123d1",
+        "babf62c5-0111-49e9-a1c3-cc004d90900a"
+      ],
+      "lastUpdate": "2026-03-03T19:22:45.0000000Z"
+    }
+  ]
+}

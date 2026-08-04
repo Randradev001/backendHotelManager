@@ -64,6 +64,45 @@ const catalogos = {
       TempActiva: { type: 'int', choices: [0, 1], insertDefault: 1 }
     }
   },
+  tiposFamilia: {
+    table: 'FamTipo',
+    gxLevel: 1,
+    requiresEmpCod: true,
+    columnMap: { EmpCod: 'GECODEMP' },
+    primaryKey: ['EmpCod', 'FamTCod'],
+    columns: ['EmpCod', 'FamTCod', 'FamTDescrip'],
+    orderBy: ['FamTCod'],
+    searchColumns: ['FamTCod', 'FamTDescrip'],
+    fields: {
+      EmpCod: { type: 'decimal', precision: 10, scale: 0, required: true, min: 1 },
+      FamTCod: { type: 'int', required: true, min: 1, max: 9999 },
+      FamTDescrip: { type: 'text', length: 25, required: true }
+    },
+    deleteDependencies: [
+      { table: 'Fam', fields: ['EmpCod', 'FamTCod'], columnMap: { EmpCod: 'GECODEMP' } }
+    ]
+  },
+  familias: {
+    table: 'Fam',
+    gxLevel: 1,
+    requiresEmpCod: true,
+    columnMap: { EmpCod: 'GECODEMP' },
+    primaryKey: ['EmpCod', 'FamFam'],
+    columns: ['EmpCod', 'FamFam', 'FamDesc', 'FamEQ', 'FamTCod', 'FamTDescrip'],
+    orderBy: ['FamFam'],
+    searchColumns: ['FamFam', 'FamDesc', 'FamTCod', 'FamTDescrip'],
+    // FamTDescrip se replica desde FamTipo; no se acepta como valor editable del cliente.
+    fields: {
+      EmpCod: { type: 'decimal', precision: 10, scale: 0, required: true, min: 1 },
+      FamFam: { type: 'int', required: true, min: 1, max: 999 },
+      FamDesc: { type: 'text', length: 45, required: true },
+      FamEQ: { type: 'int', min: 0, max: 99 },
+      FamTCod: { type: 'int', required: true, min: 1, max: 9999 },
+      FamTDescrip: { type: 'text', length: 25, serverManaged: true }
+    },
+    // Hay maestros e historicos hijos no migrados aun; su eliminacion se habilitara al relevarlos.
+    allowDelete: false
+  },
   especies: {
     table: 'ESPECIES',
     gxLevel: 1,
@@ -862,7 +901,7 @@ const assertDeleteDependencies = async (pool, req, config) => {
       const field = config.fields[fieldName];
       const paramName = `dependency_${fieldName}`;
       bindField(request, paramName, fieldName, field, getCatalogWriteParam(req, config, fieldName), true);
-      where.push(`${quoteName(fieldName)} = @${paramName}`);
+      where.push(`${quoteName(dependency.columnMap?.[fieldName] || fieldName)} = @${paramName}`);
     }
 
     // La base GX8 no declara estas relaciones como FK; se conservan antes de eliminar.
@@ -875,6 +914,43 @@ const assertDeleteDependencies = async (pool, req, config) => {
     if (result.recordset.length > 0) {
       throw httpError(409, `No se puede eliminar: el registro esta utilizado en ${dependency.table}`);
     }
+  }
+};
+
+const synchronizeFamilyTypeDescription = async (req, required) => {
+  const rawCode = getCatalogWriteParam(req, catalogos.familias, 'FamTCod');
+  if (rawCode === undefined || rawCode === null || rawCode === '') {
+    if (required) return;
+    return;
+  }
+
+  const typeCode = normalizeValue('FamTCod', catalogos.familias.fields.FamTCod, rawCode, true);
+  const pool = await getPool();
+  const request = pool.request();
+  request.input('empCod', sql.Int, getContextEmpCod(req));
+  request.input('famTCod', sql.Int, typeCode);
+
+  const result = await request.query(`
+    SELECT TOP (1) RTRIM([FamTDescrip]) AS [FamTDescrip]
+    FROM [FamTipo]
+    WHERE [GECODEMP] = @empCod AND [FamTCod] = @famTCod
+  `);
+
+  if (result.recordset.length === 0) {
+    throw httpError(400, 'El tipo de familia indicado no existe para la empresa autenticada');
+  }
+
+  req.body = { ...(req.body || {}), FamTDescrip: result.recordset[0].FamTDescrip };
+};
+
+const withFamilyTypeDescription = (handler, required) => async (req, res) => {
+  try {
+    if (required || hasWriteParam(req, 'FamTCod')) {
+      await synchronizeFamilyTypeDescription(req, required);
+    }
+    return handler(req, res);
+  } catch (error) {
+    return sendWriteError(res, 'familias', error, 'Error validando tipo de familia');
   }
 };
 
@@ -981,6 +1057,7 @@ const getCatalogos = (req, res) => {
 };
 
 module.exports = {
+  catalogs: catalogos,
   getCatalogos,
   listEmpresas: listCatalog('empresas'),
   insertEmpresa: insertCatalog('empresas'),
@@ -990,6 +1067,14 @@ module.exports = {
   insertTemporada: insertCatalog('temporadas'),
   updateTemporada: updateCatalog('temporadas'),
   deleteTemporada: deleteCatalog('temporadas'),
+  listTiposFamilia: listCatalog('tiposFamilia'),
+  insertTipoFamilia: insertCatalog('tiposFamilia'),
+  updateTipoFamilia: updateCatalog('tiposFamilia'),
+  deleteTipoFamilia: deleteCatalog('tiposFamilia'),
+  listFamilias: listCatalog('familias'),
+  insertFamilia: withFamilyTypeDescription(insertCatalog('familias'), true),
+  updateFamilia: withFamilyTypeDescription(updateCatalog('familias'), false),
+  deleteFamilia: deleteCatalog('familias'),
   listEspecies: listCatalog('especies'),
   insertEspecie: insertCatalog('especies'),
   updateEspecie: updateCatalog('especies'),

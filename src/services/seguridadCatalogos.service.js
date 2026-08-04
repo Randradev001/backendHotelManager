@@ -117,7 +117,8 @@ const catalogs = {
       ProgCod: number({ required: true, min: 1 }),
       ProgDes: text(35, { required: true }),
       ProgFcrea: date({ serverValueOnInsert: 'serverDate' }),
-      ProgTipo: number({ defaultValue: 0 }),
+      // Sólo los programas tipo 1 forman parte del menú de usuarios.
+      ProgTipo: number({ required: true, defaultValue: 1, choices: [1, 2] }),
       ProgNomGX: text(100, { defaultValue: ' ' }),
       ProgIDmenu: text(20, { defaultValue: ' ' }),
       ProgTarget: text(20, { defaultValue: ' ' })
@@ -240,6 +241,9 @@ const validateValue = (name, field, rawValue, { insert = false } = {}) => {
     const value = Number(rawValue);
     if (!Number.isInteger(value)) throw new SecurityError(400, 'VALIDATION_ERROR', `${name} debe ser entero.`);
     if (field.min !== undefined && value < field.min) throw new SecurityError(400, 'VALIDATION_ERROR', `${name} debe ser mayor o igual a ${field.min}.`);
+    if (field.choices && !field.choices.includes(value)) {
+      throw new SecurityError(400, 'VALIDATION_ERROR', `${name} debe ser uno de estos valores: ${field.choices.join(', ')}.`);
+    }
     return value;
   }
 

@@ -48,6 +48,20 @@ bindCrudRoutes('/temporadas', {
   remove: MaestrosController.deleteTemporada
 });
 
+bindReadRoute('/tipos-familia', MaestrosController.listTiposFamilia);
+bindCrudRoutes('/tipos-familia', {
+  insert: MaestrosController.insertTipoFamilia,
+  update: MaestrosController.updateTipoFamilia,
+  remove: MaestrosController.deleteTipoFamilia
+});
+
+bindReadRoute('/familias', MaestrosController.listFamilias);
+bindCrudRoutes('/familias', {
+  insert: MaestrosController.insertFamilia,
+  update: MaestrosController.updateFamilia,
+  remove: MaestrosController.deleteFamilia
+});
+
 bindReadRoute('/especies', MaestrosController.listEspecies);
 bindCrudRoutes('/especies', {
   insert: MaestrosController.insertEspecie,
