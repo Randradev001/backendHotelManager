@@ -1,0 +1,5 @@
+"sqlTable","likelyCurrentModelTable","confidence","heuristicScore","primaryKeySimilarity","columnSimilarity","nameSimilarity","rationale"
+"DefEmp","g_emp","LOW","0.120","0.000","0.000","0.800","Parece una empresa legada adicional: G_Emp tambien existe, y la llave y casi todos los atributos son distintos."
+"FactVentas1","FactVentasDet","HIGH","0.529","0.333","0.571","1.000","Es el nivel detalle historico de FactVentas; conserva la llave del encabezado y atributos FV1."
+"MAUMed","UMed","HIGH","0.657","0.500","0.800","0.750","Coinciden UmCod, UMSig, UMDes y UMCantSal; el XPZ actual agrega GECODEMP a la llave."
+"PagosDoc1","PagosDocDet","HIGH","1.000","1.000","1.000","1.000","Es el nivel detalle historico de PagosDoc y coincide su estructura de llave/atributos PAGD1."

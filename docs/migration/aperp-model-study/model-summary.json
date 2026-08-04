@@ -1,0 +1,259 @@
+{
+  "generatedAt": "2026-07-31T18:56:21.655Z",
+  "scope": "Logical GeneXus model study only",
+  "source": {
+    "label": "\\\\apserver01\\Respaldos\\EXpor_APERP\\APERP_Base de conocimiento.xpz",
+    "analyzedCopy": "C:\\Users\\andre\\AppData\\Local\\Temp\\APERP_Base_de_conocimiento_20260730.xpz",
+    "archiveEntry": "APERP_Base de conocimiento.xml",
+    "size": 25107181,
+    "sha256": "c05c2c680d18fab6cd53fdd30460cb91e41591b258d1bc794463fb3cfaa7be8a"
+  },
+  "knowledgeBase": {
+    "name": "APERP",
+    "sourcePath": "\\\\DESKTOP-T2MQM0S\\D$\\ModGx18\\APERP",
+    "kmwMajor": "4",
+    "kmwMinor": "0",
+    "kmwBuild": "185416",
+    "environment": "NETFrameworkSQLServer",
+    "generatedLanguage": ".NET Framework",
+    "multiTenant": "False",
+    "startupObject": "c9584656-94b6-4ccd-890f-332d11fc2c25-WWPBaseObjects.SecLogIn",
+    "generator": "Default",
+    "generatorId": "15",
+    "dataStore": "Default",
+    "dbmsId": "12",
+    "databaseReferentialIntegrity": "No"
+  },
+  "counts": {
+    "objects": 3676,
+    "objectTypes": {
+      "Category": {
+        "total": 3,
+        "application": 3,
+        "framework": 0
+      },
+      "Data Provider": {
+        "total": 8,
+        "application": 3,
+        "framework": 5
+      },
+      "Data Selector": {
+        "total": 307,
+        "application": 300,
+        "framework": 7
+      },
+      "Data Store": {
+        "total": 1,
+        "application": 1,
+        "framework": 0
+      },
+      "Deployment Unit": {
+        "total": 1,
+        "application": 1,
+        "framework": 0
+      },
+      "Design System": {
+        "total": 3,
+        "application": 2,
+        "framework": 1
+      },
+      "Domain": {
+        "total": 59,
+        "application": 59,
+        "framework": 0
+      },
+      "External Object": {
+        "total": 2,
+        "application": 1,
+        "framework": 1
+      },
+      "File": {
+        "total": 1,
+        "application": 1,
+        "framework": 0
+      },
+      "Folder": {
+        "total": 132,
+        "application": 98,
+        "framework": 34
+      },
+      "Generator": {
+        "total": 1,
+        "application": 1,
+        "framework": 0
+      },
+      "Image": {
+        "total": 92,
+        "application": 92,
+        "framework": 0
+      },
+      "Language": {
+        "total": 1,
+        "application": 1,
+        "framework": 0
+      },
+      "Module": {
+        "total": 15,
+        "application": 8,
+        "framework": 7
+      },
+      "Pattern Settings": {
+        "total": 1,
+        "application": 0,
+        "framework": 1
+      },
+      "Procedure": {
+        "total": 1349,
+        "application": 1298,
+        "framework": 51
+      },
+      "Structured Data Type": {
+        "total": 26,
+        "application": 25,
+        "framework": 1
+      },
+      "Subtype Group": {
+        "total": 75,
+        "application": 74,
+        "framework": 1
+      },
+      "Table": {
+        "total": 218,
+        "application": 209,
+        "framework": 9
+      },
+      "Transaction": {
+        "total": 209,
+        "application": 201,
+        "framework": 8
+      },
+      "User Control": {
+        "total": 1,
+        "application": 1,
+        "framework": 0
+      },
+      "Web Master Panel": {
+        "total": 653,
+        "application": 612,
+        "framework": 41
+      },
+      "WorkWithPlus": {
+        "total": 401,
+        "application": 373,
+        "framework": 28
+      },
+      "WorkWithPlus for Web Template": {
+        "total": 117,
+        "application": 0,
+        "framework": 117
+      }
+    },
+    "transactions": 209,
+    "applicationTransactions": 201,
+    "frameworkTransactions": 8,
+    "transactionLevels": 276,
+    "subordinateLevels": 67,
+    "tables": 218,
+    "applicationTables": 209,
+    "attributes": 2204,
+    "tableColumnPlacements": 2774,
+    "logicalColumnPlacementsBeforeTableDeduplication": 4249,
+    "formulaAttributes": 84,
+    "formulaColumnPlacements": 64,
+    "redundantFormulaColumnPlacements": 19,
+    "autoNumberAttributes": 6,
+    "domains": 59,
+    "subtypeGroups": 75,
+    "subtypeMappings": 318,
+    "confirmedLevelRelations": 67,
+    "candidateRelations": 412,
+    "tablesReusedByMultipleTransactionLevels": 32
+  },
+  "applicationTransactionsByArea": {
+    "AMaeG": 20,
+    "bod": 65,
+    "Facturacion": 16,
+    "MasRoles": 1,
+    "operac": 67,
+    "person": 22,
+    "Seguridad": 10
+  },
+  "applicationTablesByArea": {
+    "AMaeG": 25,
+    "bod": 62,
+    "Facturacion": 17,
+    "MasRoles": 1,
+    "operac": 68,
+    "person": 24,
+    "Seguridad": 12
+  },
+  "companyScope": {
+    "explicitAttributes": [
+      "GECODEMP",
+      "EmpCod"
+    ],
+    "applicationTablesWithCompanyAttribute": 197,
+    "applicationTablesWithoutCompanyAttribute": 12,
+    "tablesWithoutCompanyAttribute": [
+      "MAPARIVA",
+      "CC_Cuenta",
+      "CC_CuentaC2",
+      "PS_Lecturas",
+      "Fer001",
+      "PS_Stoc",
+      "logactividad",
+      "Modulos",
+      "Program",
+      "Program1",
+      "Sistemas",
+      "UROLES"
+    ]
+  },
+  "checks": {
+    "keylessTables": [],
+    "unmappedTables": [],
+    "missingPhysicalTables": [],
+    "ambiguousTableLevels": [],
+    "duplicateTableMappings": [
+      "EntSuc",
+      "MACcosto2",
+      "TiposE",
+      "TiposE1",
+      "BodCent",
+      "BodCentDet",
+      "MSucBod",
+      "MSucBodDet",
+      "OrdComp",
+      "OrdCompDet",
+      "SComObs",
+      "SolCon",
+      "SolConDet",
+      "DetEP",
+      "DetEP1",
+      "FactVentas",
+      "FactVentasDet",
+      "BitMan",
+      "BitRecDet",
+      "CargosRec",
+      "CargosRec1",
+      "cpevaluacion",
+      "cpevaluacionLevel1",
+      "ING_IOM",
+      "IOMInfRea",
+      "IOMMante00",
+      "IOMVirPan",
+      "VACONS01",
+      "VAIngSolicit",
+      "Anticipos",
+      "AnticiposAnt1",
+      "Personal"
+    ],
+    "unresolvedAttributeDefinitions": [],
+    "unresolvedAttributeTypes": [],
+    "tableNamesOver30Characters": [],
+    "attributeNamesOver30Characters": [
+      "MenuItemShowDeveloperMenuOption",
+      "SecParentFunctionalityDescription"
+    ]
+  }
+}

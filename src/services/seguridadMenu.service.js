@@ -4,7 +4,7 @@ const clean = (value) => (typeof value === 'string' ? value.trim() : value);
 
 const getAuthorizedMenu = async (pool, empCod, login) => {
   const result = await pool.request()
-    .input('empCod', sql.Int, empCod)
+    .input('empCod', sql.Decimal(10, 0), empCod)
     .input('login', sql.VarChar(10), login)
     .query(`
       WITH EffectivePrograms AS (

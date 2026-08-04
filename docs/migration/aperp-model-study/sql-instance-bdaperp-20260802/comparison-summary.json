@@ -1,0 +1,561 @@
+{
+  "generatedAt": "2026-08-02T20:12:16.013Z",
+  "verdict": "NOT_EQUIVALENT",
+  "verdictReason": "La base contiene solo una fraccion o una version diferente del esquema fisico declarado por el XPZ actual.",
+  "safety": {
+    "comparisonMode": "SELECT-only metadata queries against attached database",
+    "databaseWasReadOnly": false,
+    "writesPerformedByAnalyzer": false
+  },
+  "attachedDatabaseFiles": [
+    {
+      "fileId": 1,
+      "logicalName": "BDAPERP",
+      "fileType": "ROWS",
+      "physicalName": "C:\\BD\\BDAPERP.mdf",
+      "allocatedBytes": 75497472,
+      "state": "ONLINE"
+    },
+    {
+      "fileId": 2,
+      "logicalName": "BDAPERP_log",
+      "fileType": "LOG",
+      "physicalName": "C:\\BD\\BDAPERP_log.ldf",
+      "allocatedBytes": 75497472,
+      "state": "ONLINE"
+    }
+  ],
+  "sourceFiles": {
+    "mdf": null,
+    "ldf": null,
+    "originalDatabaseVersion": null,
+    "newerNetworkReference": null
+  },
+  "sqlServer": {
+    "serverName": "DESKTOP-SOOAP92\\SQLEXPRESS",
+    "productVersion": "16.0.1000.6",
+    "edition": "Express Edition (64-bit)",
+    "databaseName": "BDAPERP",
+    "createDate": "2026-08-02T15:07:57.440",
+    "compatibilityLevel": 130,
+    "collation": "Modern_Spanish_CI_AS",
+    "state": "ONLINE",
+    "userAccess": "MULTI_USER",
+    "isReadOnly": false,
+    "allocatedBytes": 150994944
+  },
+  "modelSource": {
+    "label": "\\\\apserver01\\Respaldos\\EXpor_APERP\\APERP_Base de conocimiento.xpz",
+    "analyzedCopy": "C:\\Users\\andre\\AppData\\Local\\Temp\\APERP_Base_de_conocimiento_20260730.xpz",
+    "archiveEntry": "APERP_Base de conocimiento.xml",
+    "size": 25107181,
+    "sha256": "c05c2c680d18fab6cd53fdd30460cb91e41591b258d1bc794463fb3cfaa7be8a"
+  },
+  "modelKnowledgeBase": {
+    "name": "APERP",
+    "sourcePath": "\\\\DESKTOP-T2MQM0S\\D$\\ModGx18\\APERP",
+    "kmwMajor": "4",
+    "kmwMinor": "0",
+    "kmwBuild": "185416",
+    "environment": "NETFrameworkSQLServer",
+    "generatedLanguage": ".NET Framework",
+    "multiTenant": "False",
+    "startupObject": "c9584656-94b6-4ccd-890f-332d11fc2c25-WWPBaseObjects.SecLogIn",
+    "generator": "Default",
+    "generatorId": "15",
+    "dataStore": "Default",
+    "dbmsId": "12",
+    "databaseReferentialIntegrity": "No"
+  },
+  "counts": {
+    "modelTables": 218,
+    "sqlTables": 163,
+    "exactTableNameMatches": 160,
+    "exactTablesWithoutDetectedStructuralDifferences": 72,
+    "exactModelTableCoveragePercent": 73.4,
+    "exactSqlTableRecognitionPercent": 98.2,
+    "modelOnlyTables": 58,
+    "sqlOnlyTables": 3,
+    "likelyHistoricalRenames": 3,
+    "historicalCandidatesCoveringMissingModelTables": 3,
+    "modelStoredColumns": 2710,
+    "sqlColumns": 1740,
+    "matchedColumnsOnExactTables": 1674,
+    "missingColumnsOnExactTables": 333,
+    "extraColumnsOnExactTables": 8,
+    "typeFamilyMismatchesOnMatchedColumns": 10,
+    "sqlPrimaryKeys": 163,
+    "matchingPrimaryKeysOnExactTables": 156,
+    "differingPrimaryKeysOnExactTables": 4,
+    "sqlIndexes": 326,
+    "sqlForeignKeys": 0,
+    "sqlComputedColumns": 0,
+    "nonEmptySqlTables": 93
+  },
+  "nonEmptyTables": [
+    {
+      "table": "Anticipos",
+      "rows": 6
+    },
+    {
+      "table": "AnticiposAnt1",
+      "rows": 20
+    },
+    {
+      "table": "AproCOB",
+      "rows": 3
+    },
+    {
+      "table": "AreaTrab",
+      "rows": 11
+    },
+    {
+      "table": "Asig",
+      "rows": 71
+    },
+    {
+      "table": "AsigProg",
+      "rows": 332
+    },
+    {
+      "table": "AsigSist",
+      "rows": 32
+    },
+    {
+      "table": "Asistencia",
+      "rows": 8
+    },
+    {
+      "table": "AsistenciaAsis1",
+      "rows": 40
+    },
+    {
+      "table": "BitMan",
+      "rows": 1
+    },
+    {
+      "table": "BitManM1",
+      "rows": 1
+    },
+    {
+      "table": "BitPerPPer",
+      "rows": 8
+    },
+    {
+      "table": "BitRec",
+      "rows": 2
+    },
+    {
+      "table": "BitRecDet",
+      "rows": 6
+    },
+    {
+      "table": "Cargo",
+      "rows": 307
+    },
+    {
+      "table": "CargoSCar",
+      "rows": 96
+    },
+    {
+      "table": "CargosRec",
+      "rows": 2
+    },
+    {
+      "table": "CargosRec1",
+      "rows": 3
+    },
+    {
+      "table": "CCDoc",
+      "rows": 10
+    },
+    {
+      "table": "CCDOC1",
+      "rows": 17
+    },
+    {
+      "table": "CobrosIOM",
+      "rows": 2
+    },
+    {
+      "table": "CobrosIOMDet",
+      "rows": 5
+    },
+    {
+      "table": "ContAC",
+      "rows": 3
+    },
+    {
+      "table": "ContACCAC1",
+      "rows": 9
+    },
+    {
+      "table": "CORDOC",
+      "rows": 3
+    },
+    {
+      "table": "EmpCli",
+      "rows": 1
+    },
+    {
+      "table": "Entidad",
+      "rows": 387
+    },
+    {
+      "table": "Entidad1",
+      "rows": 597
+    },
+    {
+      "table": "EntSuc",
+      "rows": 486
+    },
+    {
+      "table": "ExamPersona",
+      "rows": 2
+    },
+    {
+      "table": "FACTDetalleHES",
+      "rows": 6
+    },
+    {
+      "table": "FactVentas",
+      "rows": 12
+    },
+    {
+      "table": "FactVentasDet",
+      "rows": 15
+    },
+    {
+      "table": "FVDetallePresu",
+      "rows": 3
+    },
+    {
+      "table": "g_emp",
+      "rows": 2
+    },
+    {
+      "table": "ING_IOM",
+      "rows": 3
+    },
+    {
+      "table": "IOM_Vehiculos",
+      "rows": 9
+    },
+    {
+      "table": "IOMInfRea",
+      "rows": 3
+    },
+    {
+      "table": "IOMMante00",
+      "rows": 5
+    },
+    {
+      "table": "IOMObS",
+      "rows": 1
+    },
+    {
+      "table": "IOMPerAsis",
+      "rows": 5
+    },
+    {
+      "table": "MAAdmPension",
+      "rows": 8
+    },
+    {
+      "table": "MAArticv",
+      "rows": 7028
+    },
+    {
+      "table": "MABancos",
+      "rows": 1
+    },
+    {
+      "table": "MACCosto1",
+      "rows": 103
+    },
+    {
+      "table": "MACcosto2",
+      "rows": 8201
+    },
+    {
+      "table": "MAControlFechas",
+      "rows": 6
+    },
+    {
+      "table": "MACorrelativos",
+      "rows": 2
+    },
+    {
+      "table": "MaeArt",
+      "rows": 2
+    },
+    {
+      "table": "MAFamv",
+      "rows": 17
+    },
+    {
+      "table": "MAGruv",
+      "rows": 152
+    },
+    {
+      "table": "MAPARIVA",
+      "rows": 1
+    },
+    {
+      "table": "MAPrevision",
+      "rows": 10
+    },
+    {
+      "table": "MATipoDoc",
+      "rows": 2
+    },
+    {
+      "table": "MATipoDoc1",
+      "rows": 2
+    },
+    {
+      "table": "MATiProce",
+      "rows": 3
+    },
+    {
+      "table": "Modulos",
+      "rows": 20
+    },
+    {
+      "table": "MSUCBOD",
+      "rows": 1
+    },
+    {
+      "table": "MSUCBOD1",
+      "rows": 2
+    },
+    {
+      "table": "MTPROV",
+      "rows": 1
+    },
+    {
+      "table": "Pabellones",
+      "rows": 14377
+    },
+    {
+      "table": "PagosDoc",
+      "rows": 5
+    },
+    {
+      "table": "PagosDocDet",
+      "rows": 7
+    },
+    {
+      "table": "ParamGen",
+      "rows": 20
+    },
+    {
+      "table": "ParamGenLevel1",
+      "rows": 89
+    },
+    {
+      "table": "ParCambus",
+      "rows": 2
+    },
+    {
+      "table": "ParCobros",
+      "rows": 5
+    },
+    {
+      "table": "ParCobrosFechas",
+      "rows": 155
+    },
+    {
+      "table": "PerCarFami",
+      "rows": 3
+    },
+    {
+      "table": "Perscont",
+      "rows": 2
+    },
+    {
+      "table": "PersMatrizlog",
+      "rows": 9
+    },
+    {
+      "table": "Personal",
+      "rows": 117
+    },
+    {
+      "table": "ProBL001",
+      "rows": 16
+    },
+    {
+      "table": "Program",
+      "rows": 86
+    },
+    {
+      "table": "PS_InfResu",
+      "rows": 33
+    },
+    {
+      "table": "Req001",
+      "rows": 1
+    },
+    {
+      "table": "Sistemas",
+      "rows": 7
+    },
+    {
+      "table": "sucu",
+      "rows": 1
+    },
+    {
+      "table": "TipAnti",
+      "rows": 33
+    },
+    {
+      "table": "TipMan",
+      "rows": 26
+    },
+    {
+      "table": "TipMan1",
+      "rows": 6002
+    },
+    {
+      "table": "TipOBS",
+      "rows": 7
+    },
+    {
+      "table": "TipoContra",
+      "rows": 3
+    },
+    {
+      "table": "TiposE",
+      "rows": 3
+    },
+    {
+      "table": "TiposE1",
+      "rows": 6
+    },
+    {
+      "table": "TiposPagos",
+      "rows": 1
+    },
+    {
+      "table": "TipPOC",
+      "rows": 72
+    },
+    {
+      "table": "TVehiculo",
+      "rows": 10
+    },
+    {
+      "table": "UMed",
+      "rows": 1
+    },
+    {
+      "table": "UROLES",
+      "rows": 1
+    },
+    {
+      "table": "URolesPorUser",
+      "rows": 3
+    },
+    {
+      "table": "Usuarios",
+      "rows": 5
+    },
+    {
+      "table": "VEHICULOS",
+      "rows": 189
+    }
+  ],
+  "areaCoverage": [
+    {
+      "area": "AMaeG",
+      "modelTables": 25,
+      "exactSqlTables": 23,
+      "missingSqlTables": 2,
+      "exactCoveragePercent": 92,
+      "missingColumnsOnExactTables": 7,
+      "extraColumnsOnExactTables": 1,
+      "primaryKeyMismatches": 0
+    },
+    {
+      "area": "Facturacion",
+      "modelTables": 17,
+      "exactSqlTables": 17,
+      "missingSqlTables": 0,
+      "exactCoveragePercent": 100,
+      "missingColumnsOnExactTables": 50,
+      "extraColumnsOnExactTables": 0,
+      "primaryKeyMismatches": 0
+    },
+    {
+      "area": "Framework",
+      "modelTables": 9,
+      "exactSqlTables": 9,
+      "missingSqlTables": 0,
+      "exactCoveragePercent": 100,
+      "missingColumnsOnExactTables": 11,
+      "extraColumnsOnExactTables": 1,
+      "primaryKeyMismatches": 0
+    },
+    {
+      "area": "MasRoles",
+      "modelTables": 1,
+      "exactSqlTables": 1,
+      "missingSqlTables": 0,
+      "exactCoveragePercent": 100,
+      "missingColumnsOnExactTables": 2,
+      "extraColumnsOnExactTables": 0,
+      "primaryKeyMismatches": 0
+    },
+    {
+      "area": "Seguridad",
+      "modelTables": 12,
+      "exactSqlTables": 12,
+      "missingSqlTables": 0,
+      "exactCoveragePercent": 100,
+      "missingColumnsOnExactTables": 12,
+      "extraColumnsOnExactTables": 0,
+      "primaryKeyMismatches": 0
+    },
+    {
+      "area": "bod",
+      "modelTables": 62,
+      "exactSqlTables": 6,
+      "missingSqlTables": 56,
+      "exactCoveragePercent": 9.7,
+      "missingColumnsOnExactTables": 67,
+      "extraColumnsOnExactTables": 4,
+      "primaryKeyMismatches": 4
+    },
+    {
+      "area": "operac",
+      "modelTables": 68,
+      "exactSqlTables": 68,
+      "missingSqlTables": 0,
+      "exactCoveragePercent": 100,
+      "missingColumnsOnExactTables": 133,
+      "extraColumnsOnExactTables": 1,
+      "primaryKeyMismatches": 0
+    },
+    {
+      "area": "person",
+      "modelTables": 24,
+      "exactSqlTables": 24,
+      "missingSqlTables": 0,
+      "exactCoveragePercent": 100,
+      "missingColumnsOnExactTables": 51,
+      "extraColumnsOnExactTables": 1,
+      "primaryKeyMismatches": 0
+    }
+  ],
+  "sqlOnlyTables": [
+    "MSUCBOD1",
+    "ORDCOMP1",
+    "SOLCON1"
+  ],
+  "notes": [
+    "La ausencia de llaves foraneas es coherente con la configuracion GeneXus Database Referential Integrity = No, pero no prueba equivalencia.",
+    "Las coincidencias de tipo comparan familias logicas; no certifican por si solas precision, escala ni longitud.",
+    "Los candidatos de renombre son evidencia historica y no deben aplicarse como cambios automaticos."
+  ]
+}

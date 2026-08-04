@@ -17,6 +17,12 @@ const config = {
   requestTimeout: 30000,
 };
 
+console.log({
+  server: config.server,
+  database: config.database,
+  instanceName: config.options.instanceName
+});
+
 let pool;
 async function getPool() {
   if (pool) { if (!pool.connected) await pool.connect(); return pool; }

@@ -1,6 +1,6 @@
 const SeguridadService = require('../services/seguridad.service');
 
-const COOKIE_NAME = process.env.SESSION_COOKIE_NAME || 'conex_session';
+const COOKIE_NAME = process.env.SESSION_COOKIE_NAME || 'aperp_session';
 
 const readCookie = (req, name) => {
   const cookies = String(req.headers.cookie || '').split(';');

@@ -30,10 +30,12 @@ const requireSecurityAdmin = (req, res, next) => {
   const configured = String(process.env.SECURITY_ADMIN_LOGINS || '').split(',').map((item) => item.trim().toUpperCase()).filter(Boolean);
   const adminRoles = String(process.env.SECURITY_ADMIN_ROLES || 'ADMINFULL').split(',').map((item) => item.trim().toUpperCase()).filter(Boolean);
   const login = String(req.auth?.user?.login || '').toUpperCase();
-  const minimumLevel = Number(process.env.SECURITY_ADMIN_MIN_LEVEL || 900);
+  const configuredMinimumLevel = String(process.env.SECURITY_ADMIN_MIN_LEVEL || '').trim();
+  const minimumLevel = configuredMinimumLevel ? Number(configuredMinimumLevel) : null;
   const level = Number(req.auth?.user?.nivelSeguridad || 0);
   const roles = Array.isArray(req.auth?.user?.roles) ? req.auth.user.roles.map((item) => String(item).toUpperCase()) : [];
-  if (configured.includes(login) || adminRoles.some((role) => roles.includes(role)) || level >= minimumLevel) return next();
+  const levelAllows = Number.isFinite(minimumLevel) && level >= minimumLevel;
+  if (configured.includes(login) || adminRoles.some((role) => roles.includes(role)) || levelAllows) return next();
   return res.status(403).json({ code: 'SECURITY_ADMIN_REQUIRED', message: 'Se requiere autorizacion para administrar Seguridad.' });
 };
 

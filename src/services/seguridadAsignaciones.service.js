@@ -11,12 +11,11 @@ const {
 const assertUserInCompany = async (requestFactory, login, empCod) => {
   const result = await requestFactory()
     .input('login', sql.VarChar(10), login)
-    .input('empCod', sql.Int, empCod)
+    .input('empCod', sql.Decimal(10, 0), empCod)
     .query(`
       SELECT TOP (1) RTRIM(U.UsuLogin) AS UsuLogin, RTRIM(U.Usunom) AS Usunom
       FROM USUARIOS U
-      INNER JOIN SEGUSUEMP UE ON UE.UsuLogin=U.UsuLogin
-      WHERE UE.GECODEMP=@empCod AND RTRIM(U.UsuLogin)=@login
+      WHERE U.GECODEMP=@empCod AND RTRIM(U.UsuLogin)=@login
     `);
   if (!result.recordset.length) {
     throw new SecurityError(404, 'USER_NOT_FOUND', 'El usuario no existe en la empresa autenticada.');
@@ -41,7 +40,7 @@ const getUserAssignments = async (loginValue, context) => {
     assertUserInCompany(() => pool.request(), login, context.empCod),
     pool.request()
       .input('login', sql.VarChar(10), login)
-      .input('empCod', sql.Int, context.empCod)
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .query(`
         SELECT
           S.SistCod,
@@ -98,7 +97,7 @@ const getSystemAssignments = async (loginValue, systemValue, context) => {
     assertSystemExists(() => pool.request(), systemCode),
     pool.request()
       .input('login', sql.VarChar(10), login)
-      .input('empCod', sql.Int, context.empCod)
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('system', sql.Int, systemCode)
       .query(`
         SELECT
@@ -129,7 +128,7 @@ const getSystemAssignments = async (loginValue, systemValue, context) => {
       `),
     pool.request()
       .input('login', sql.VarChar(10), login)
-      .input('empCod', sql.Int, context.empCod)
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('system', sql.Int, systemCode)
       .query(`
         SELECT
@@ -149,7 +148,7 @@ const getSystemAssignments = async (loginValue, systemValue, context) => {
 
   const systemAssignment = await pool.request()
     .input('login', sql.VarChar(10), login)
-    .input('empCod', sql.Int, context.empCod)
+    .input('empCod', sql.Decimal(10, 0), context.empCod)
     .input('system', sql.Int, systemCode)
     .query(`
       SELECT TOP (1) 1 AS assigned
@@ -211,13 +210,13 @@ const saveSystemAssignments = async (loginValue, systemValue, payload, context) 
     const validPrograms = await transaction.request().input('system', sql.Int, systemCode)
       .query('SELECT Modcod, ProgCod FROM PROGRAM WHERE SistCod=@system');
     const currentSystem = await transaction.request()
-      .input('empCod', sql.Int, context.empCod).input('login', sql.VarChar(10), login).input('system', sql.Int, systemCode)
+      .input('empCod', sql.Decimal(10, 0), context.empCod).input('login', sql.VarChar(10), login).input('system', sql.Int, systemCode)
       .query('SELECT TOP (1) 1 AS assigned FROM ASIGSIST WHERE GECODEMP=@empCod AND RTRIM(AsgSisLogin)=@login AND SistCod=@system');
     const currentModules = await transaction.request()
-      .input('empCod', sql.Int, context.empCod).input('login', sql.VarChar(10), login).input('system', sql.Int, systemCode)
+      .input('empCod', sql.Decimal(10, 0), context.empCod).input('login', sql.VarChar(10), login).input('system', sql.Int, systemCode)
       .query('SELECT AsigMod AS Modcod FROM ASIG WHERE GECODEMP=@empCod AND RTRIM(AsigUsu)=@login AND SistCod=@system');
     const currentPrograms = await transaction.request()
-      .input('empCod', sql.Int, context.empCod).input('login', sql.VarChar(10), login).input('system', sql.Int, systemCode)
+      .input('empCod', sql.Decimal(10, 0), context.empCod).input('login', sql.VarChar(10), login).input('system', sql.Int, systemCode)
       .query('SELECT Modcod, ProgCod FROM ASIGPROG WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login AND SistCod=@system');
 
     validateTarget(target, validModules.recordset, validPrograms.recordset);
@@ -229,7 +228,7 @@ const saveSystemAssignments = async (loginValue, systemValue, payload, context) 
 
     for (const program of plan.removePrograms) {
       const request = transaction.request()
-        .input('empCod', sql.Int, context.empCod)
+        .input('empCod', sql.Decimal(10, 0), context.empCod)
         .input('login', sql.VarChar(10), login)
         .input('system', sql.Int, systemCode)
         .input('module', sql.Int, program.Modcod)
@@ -245,7 +244,7 @@ const saveSystemAssignments = async (loginValue, systemValue, payload, context) 
 
     for (const Modcod of plan.removeModules) {
       await transaction.request()
-        .input('empCod', sql.Int, context.empCod)
+        .input('empCod', sql.Decimal(10, 0), context.empCod)
         .input('login', sql.VarChar(10), login)
         .input('system', sql.Int, systemCode)
         .input('module', sql.Int, Modcod)
@@ -254,14 +253,14 @@ const saveSystemAssignments = async (loginValue, systemValue, payload, context) 
 
     if (!target.assigned) {
       await transaction.request()
-        .input('empCod', sql.Int, context.empCod)
+        .input('empCod', sql.Decimal(10, 0), context.empCod)
         .input('login', sql.VarChar(10), login)
         .input('system', sql.Int, systemCode)
         .query('DELETE FROM ASIGSIST WHERE GECODEMP=@empCod AND RTRIM(AsgSisLogin)=@login AND SistCod=@system');
     } else {
       if (plan.assignSystem) {
         await transaction.request()
-          .input('empCod', sql.Int, context.empCod)
+          .input('empCod', sql.Decimal(10, 0), context.empCod)
           .input('login', sql.VarChar(10), login)
           .input('system', sql.Int, systemCode)
           .query('INSERT INTO ASIGSIST (GECODEMP,AsgSisLogin,SistCod) VALUES (@empCod,@login,@system)');
@@ -269,7 +268,7 @@ const saveSystemAssignments = async (loginValue, systemValue, payload, context) 
 
       for (const Modcod of plan.addModules) {
         await transaction.request()
-          .input('empCod', sql.Int, context.empCod)
+          .input('empCod', sql.Decimal(10, 0), context.empCod)
           .input('login', sql.VarChar(10), login)
           .input('actor', sql.VarChar(10), context.login)
           .input('system', sql.Int, systemCode)
@@ -279,7 +278,7 @@ const saveSystemAssignments = async (loginValue, systemValue, payload, context) 
 
       for (const program of plan.addPrograms) {
         await transaction.request()
-          .input('empCod', sql.Int, context.empCod)
+          .input('empCod', sql.Decimal(10, 0), context.empCod)
           .input('login', sql.VarChar(10), login)
           .input('actor', sql.VarChar(10), context.login)
           .input('system', sql.Int, systemCode)

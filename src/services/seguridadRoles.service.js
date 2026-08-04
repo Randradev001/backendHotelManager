@@ -47,7 +47,7 @@ const assertRoleExists = async (requestFactory, role) => {
 };
 
 const bindRoleContext = (request, { empCod, login, role, actor }) => request
-  .input('empCod', sql.Int, empCod)
+  .input('empCod', sql.Decimal(10, 0), empCod)
   .input('login', sql.VarChar(10), login)
   .input('role', sql.VarChar(10), role)
   .input('actor', sql.VarChar(10), actor);
@@ -73,13 +73,12 @@ const getUserRoles = async (loginValue, context) => {
   const login = normalizeLogin(loginValue);
   const pool = await getPool();
   const result = await pool.request()
-    .input('empCod', sql.Int, context.empCod)
+    .input('empCod', sql.Decimal(10, 0), context.empCod)
     .input('login', sql.VarChar(10), login)
     .query(`
       SELECT TOP (1) RTRIM(U.UsuLogin) AS UsuLogin, RTRIM(U.Usunom) AS Usunom
       FROM USUARIOS U
-      INNER JOIN SEGUSUEMP UE ON UE.UsuLogin=U.UsuLogin
-      WHERE UE.GECODEMP=@empCod AND RTRIM(U.UsuLogin)=@login;
+      WHERE U.GECODEMP=@empCod AND RTRIM(U.UsuLogin)=@login;
 
       SELECT
         RTRIM(R.ROLCod) AS ROLCod,
@@ -217,7 +216,7 @@ const reapplyRolePermissions = async (roleValue, payload, context) => {
     const request = transaction.request().input('role', sql.VarChar(10), role);
     let where = 'RTRIM(ROLCod)=@role';
     if (targetLogin) {
-      request.input('empCod', sql.Int, context.empCod).input('login', sql.VarChar(10), targetLogin);
+      request.input('empCod', sql.Decimal(10, 0), context.empCod).input('login', sql.VarChar(10), targetLogin);
       where += ' AND GECODEMP=@empCod AND RTRIM(UsuLogin)=@login';
     }
     const targets = await request.query(`SELECT DISTINCT GECODEMP, RTRIM(UsuLogin) AS UsuLogin FROM URolesPorUser WHERE ${where} ORDER BY GECODEMP, UsuLogin`);

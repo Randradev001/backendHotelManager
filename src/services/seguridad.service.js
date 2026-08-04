@@ -63,14 +63,13 @@ const mapUser = (row) => ({
 const getUsers = async (pool, login, empCod) => {
   const request = pool.request()
     .input('login', sql.VarChar(10), login)
-  const whereCompany = empCod ? 'AND UE.GECODEMP=@empCod' : '';
-  if (empCod) request.input('empCod', sql.Int, empCod);
+  const whereCompany = empCod ? 'AND U.GECODEMP=@empCod' : '';
+  if (empCod) request.input('empCod', sql.Decimal(10, 0), empCod);
   const result = await request.query(`
-      SELECT UE.GECODEMP, U.UsuLogin, U.Usunom, U.UsuClave, U.UsuCorreo, U.UsuCargo,
-             U.UsuNseg, UE.UsuEstado, UE.UsuPerfil, UE.UsuTipo, RTRIM(E.EmpNom) AS EmpNom
-      FROM USUARIOS U
-      INNER JOIN SEGUSUEMP UE ON UE.UsuLogin=U.UsuLogin
-      INNER JOIN DEFEMP E ON E.EmpCod=UE.GECODEMP
+      SELECT U.GECODEMP, U.UsuLogin, U.Usunom, U.UsuClave, U.UsuCorreo, U.UsuCargo,
+             U.UsuNseg, U.UsuEstado, U.UsuPerfil, U.UsuTipo, RTRIM(E.EmpNom) AS EmpNom
+      FROM VW_APERP_SEG_USUARIOS U
+      INNER JOIN VW_APERP_SEG_EMPRESAS E ON E.GECODEMP=U.GECODEMP
       WHERE RTRIM(U.UsuLogin) = @login
         ${whereCompany}
     `);
@@ -79,16 +78,15 @@ const getUsers = async (pool, login, empCod) => {
 
 const getUsersByRut = async (pool, rutNumber, empCod) => {
   const request = pool.request().input('rutNumber', sql.Decimal(9, 0), rutNumber);
-  const whereCompany = empCod ? 'AND UE.GECODEMP=@empCod' : '';
-  if (empCod) request.input('empCod', sql.Int, empCod);
+  const whereCompany = empCod ? 'AND U.GECODEMP=@empCod' : '';
+  if (empCod) request.input('empCod', sql.Decimal(10, 0), empCod);
 
   const result = await request.query(`
-    SELECT UE.GECODEMP, U.UsuLogin, U.Usunom, U.UsuClave, U.UsuRut, U.UsuDV,
-           U.UsuCorreo, U.UsuCargo, U.UsuNseg, UE.UsuEstado, UE.UsuPerfil, UE.UsuTipo,
+    SELECT U.GECODEMP, U.UsuLogin, U.Usunom, U.UsuClave, U.UsuRut, U.UsuDV,
+           U.UsuCorreo, U.UsuCargo, U.UsuNseg, U.UsuEstado, U.UsuPerfil, U.UsuTipo,
            RTRIM(E.EmpNom) AS EmpNom
-    FROM USUARIOS U
-    INNER JOIN SEGUSUEMP UE ON UE.UsuLogin=U.UsuLogin
-    INNER JOIN DEFEMP E ON E.EmpCod=UE.GECODEMP
+    FROM VW_APERP_SEG_USUARIOS U
+    INNER JOIN VW_APERP_SEG_EMPRESAS E ON E.GECODEMP=U.GECODEMP
     WHERE U.UsuRut=@rutNumber
       ${whereCompany}
   `);
@@ -96,7 +94,7 @@ const getUsersByRut = async (pool, rutNumber, empCod) => {
 };
 
 const getRoles = async (pool, empCod, login) => {
-  const result = await pool.request().input('empCod', sql.Int, empCod).input('login', sql.VarChar(10), login).query(`
+  const result = await pool.request().input('empCod', sql.Decimal(10, 0), empCod).input('login', sql.VarChar(10), login).query(`
     SELECT RTRIM(ROLCod) AS ROLCod FROM URolesPorUser
     WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login
   `);
@@ -105,11 +103,12 @@ const getRoles = async (pool, empCod, login) => {
 
 const verifyCredentials = async (pool, user, password) => {
   const credential = await pool.request()
+    .input('empCod', sql.Decimal(10, 0), user.GECODEMP)
     .input('login', sql.VarChar(10), clean(user.UsuLogin))
     .query(`
       SELECT PasswordSalt, PasswordHash
       FROM SEGUSUCRED
-      WHERE UsuLogin = @login
+      WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login
     `);
 
   if (credential.recordset[0]) {
@@ -121,12 +120,13 @@ const verifyCredentials = async (pool, user, password) => {
 
   const modern = await hashPassword(password);
   await pool.request()
+    .input('empCod', sql.Decimal(10, 0), user.GECODEMP)
     .input('login', sql.VarChar(10), clean(user.UsuLogin))
     .input('salt', sql.VarChar(64), modern.salt)
     .input('hash', sql.VarChar(256), modern.hash)
     .query(`
-      INSERT INTO SEGUSUCRED (UsuLogin, PasswordSalt, PasswordHash, MigradoDesdeGX, FechaCambio)
-      VALUES (@login, @salt, @hash, 1, SYSUTCDATETIME())
+      INSERT INTO SEGUSUCRED (GECODEMP, UsuLogin, PasswordSalt, PasswordHash, MigradoDesdeGX, FechaCambio)
+      VALUES (@empCod, @login, @salt, @hash, 1, SYSUTCDATETIME())
     `);
   return true;
 };
@@ -142,7 +142,7 @@ const getCompanies = async (pool, users) => {
 const getPermissions = async (pool, login, empCod) => {
   const request = pool.request()
     .input('login', sql.VarChar(10), login)
-    .input('empCod', sql.Int, empCod);
+    .input('empCod', sql.Decimal(10, 0), empCod);
 
   const [systems, modules, programs, actions] = await Promise.all([
     request.query(`
@@ -158,7 +158,7 @@ const getPermissions = async (pool, login, empCod) => {
         WHERE R.GECODEMP=@empCod AND RTRIM(R.UsuLogin)=@login
       ) P
     `),
-    pool.request().input('login', sql.VarChar(10), login).input('empCod', sql.Int, empCod)
+    pool.request().input('login', sql.VarChar(10), login).input('empCod', sql.Decimal(10, 0), empCod)
       .query(`
         SELECT DISTINCT SistCod, Modcod FROM (
           SELECT SistCod, AsigMod AS Modcod FROM ASIG
@@ -169,7 +169,7 @@ const getPermissions = async (pool, login, empCod) => {
           WHERE R.GECODEMP=@empCod AND RTRIM(R.UsuLogin)=@login
         ) P
       `),
-    pool.request().input('login', sql.VarChar(10), login).input('empCod', sql.Int, empCod)
+    pool.request().input('login', sql.VarChar(10), login).input('empCod', sql.Decimal(10, 0), empCod)
       .query(`
         SELECT DISTINCT SistCod, Modcod, ProgCod FROM (
           SELECT SistCod, Modcod, ProgCod FROM ASIGPROG
@@ -180,7 +180,7 @@ const getPermissions = async (pool, login, empCod) => {
           WHERE R.GECODEMP=@empCod AND RTRIM(R.UsuLogin)=@login
         ) P
       `),
-    pool.request().input('login', sql.VarChar(10), login).input('empCod', sql.Int, empCod)
+    pool.request().input('login', sql.VarChar(10), login).input('empCod', sql.Decimal(10, 0), empCod)
       .query(`
         SELECT DISTINCT SistCod, Modcod, ProgCod, ProgOPCod FROM (
           SELECT SistCod, Modcod, ProgCod, ProgOPCod FROM ASIGPROG1
@@ -210,11 +210,11 @@ const createSession = async (pool, login, empCod, remember) => {
   await pool.request()
     .input('tokenHash', sql.VarChar(64), tokenHash)
     .input('login', sql.VarChar(10), login)
-    .input('empCod', sql.Int, empCod)
+    .input('empCod', sql.Decimal(10, 0), empCod)
     .input('expiresAt', sql.DateTime2, expiresAt)
     .query(`
-      INSERT INTO SEGSESION (TokenHash, UsuLogin, EmpCod, FechaCreacion, FechaExpiracion, UltimoUso, Revocada)
-      VALUES (@tokenHash, @login, @empCod, SYSUTCDATETIME(), @expiresAt, SYSUTCDATETIME(), 0)
+      INSERT INTO SEGSESION (TokenHash, GECODEMP, UsuLogin, FechaCreacion, FechaExpiracion, UltimoUso, Revocada)
+      VALUES (@tokenHash, @empCod, @login, SYSUTCDATETIME(), @expiresAt, SYSUTCDATETIME(), 0)
     `);
 
   return { token, expiresAt };
@@ -269,13 +269,13 @@ const getSession = async (token) => {
   const result = await pool.request()
     .input('tokenHash', sql.VarChar(64), hashSessionToken(token))
     .query(`
-      SELECT S.TokenHash, S.UsuLogin, S.EmpCod, S.FechaExpiracion,
+      SELECT S.TokenHash, S.UsuLogin, S.GECODEMP AS EmpCod, S.FechaExpiracion,
              U.Usunom, U.UsuCorreo, U.UsuCargo, U.UsuNseg,
-             UE.UsuEstado, UE.UsuPerfil, UE.UsuTipo, E.EmpNom
+             U.UsuEstado, U.UsuPerfil, U.UsuTipo, E.EmpNom
       FROM SEGSESION S
-      INNER JOIN USUARIOS U ON U.UsuLogin=S.UsuLogin
-      INNER JOIN SEGUSUEMP UE ON UE.GECODEMP=S.EmpCod AND UE.UsuLogin=S.UsuLogin
-      LEFT JOIN DEFEMP E ON E.EmpCod=S.EmpCod
+      INNER JOIN VW_APERP_SEG_USUARIOS U
+        ON U.GECODEMP=S.GECODEMP AND U.UsuLogin=S.UsuLogin
+      LEFT JOIN VW_APERP_SEG_EMPRESAS E ON E.GECODEMP=S.GECODEMP
       WHERE S.TokenHash = @tokenHash AND S.Revocada = 0 AND S.FechaExpiracion > SYSUTCDATETIME()
     `);
   const row = result.recordset[0];
@@ -308,8 +308,8 @@ const logout = async (token) => {
 };
 
 const changePassword = async (loginName, empCod, currentPassword, newPassword) => {
-  if (!currentPassword || !newPassword || String(newPassword).length < 8) {
-    throw new SecurityError(400, 'VALIDATION_ERROR', 'La nueva clave debe tener al menos 8 caracteres.');
+  if (!currentPassword || !newPassword || String(newPassword).length < 8 || String(newPassword).length > 10) {
+    throw new SecurityError(400, 'VALIDATION_ERROR', 'La nueva clave debe tener entre 8 y 10 caracteres durante la convivencia con GeneXus.');
   }
   const pool = await getPool();
   const user = (await getUsers(pool, loginName, empCod))[0];
@@ -317,15 +317,29 @@ const changePassword = async (loginName, empCod, currentPassword, newPassword) =
     throw new SecurityError(401, 'INVALID_CREDENTIALS', 'La clave actual no es correcta.');
   }
   const modern = await hashPassword(String(newPassword));
-  await pool.request()
-    .input('login', sql.VarChar(10), loginName)
-    .input('salt', sql.VarChar(64), modern.salt)
-    .input('hash', sql.VarChar(256), modern.hash)
-    .query(`
-      UPDATE SEGUSUCRED
-      SET PasswordSalt=@salt, PasswordHash=@hash, MigradoDesdeGX=0, FechaCambio=SYSUTCDATETIME()
-      WHERE UsuLogin=@login
-    `);
+  const transaction = pool.transaction();
+  await transaction.begin();
+  try {
+    await transaction.request()
+      .input('empCod', sql.Decimal(10, 0), empCod)
+      .input('login', sql.VarChar(10), loginName)
+      .input('legacyPassword', sql.NVarChar(10), String(newPassword))
+      .query('UPDATE USUARIOS SET UsuClave=@legacyPassword WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login');
+    await transaction.request()
+      .input('empCod', sql.Decimal(10, 0), empCod)
+      .input('login', sql.VarChar(10), loginName)
+      .input('salt', sql.VarChar(64), modern.salt)
+      .input('hash', sql.VarChar(256), modern.hash)
+      .query(`
+        UPDATE SEGUSUCRED
+        SET PasswordSalt=@salt, PasswordHash=@hash, MigradoDesdeGX=0, FechaCambio=SYSUTCDATETIME()
+        WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login
+      `);
+    await transaction.commit();
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
 };
 
 module.exports = { SecurityError, login, getSession, logout, changePassword, parseRut };

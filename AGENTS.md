@@ -20,6 +20,7 @@ This repository is the Node.js backend for migrating the CONEX GeneXus 8 system.
 - Preserve `NivSeg` for compatibility, but use `AsigSist`, `Asig`, `AsigProg`, and `AsigProg1` as the current authorization model.
 - Retire `VA`; migrate the business behavior of `VA2` to backend permission middleware.
 - Procedures that query, validate, calculate, update, or authorize belong in the backend. React hooks may call them but must not duplicate their business rules.
+- Team Collaboration Rule: Always update your assigned log file (`docs/team/GEMINI_WORK_LOG.md` for Gemini / Antigravity or `docs/team/CODEX_WORK_LOG.md` for Codex) after completing tasks.
 - Add short comments only where GeneXus compatibility or a non-obvious business rule needs explanation.
 
 ## Before Changing Behavior

@@ -17,24 +17,23 @@ const catalogs = {
     table: 'USUARIOS',
     companyColumn: 'GECODEMP',
     primaryKey: ['GECODEMP', 'UsuLogin'],
-    columns: ['GECODEMP', 'UsuLogin', 'UsuRut', 'UsuDV', 'Usunom', 'UsuCargo', 'UsuExpira', 'usucrea', 'UsuNseg', 'UsuCorreo', 'UsuEstado', 'UsuPerfil', 'UsuTipo'],
+    columns: ['GECODEMP', 'UsuLogin', 'UsuRut', 'UsuDV', 'Usunom', 'UsuCargo', 'usucrea', 'UsuCorreo', 'UsuEstado', 'UsuPerfil', 'UsuTipo', 'usuFecCrea'],
     searchColumns: ['UsuLogin', 'UsuRut', 'Usunom', 'UsuCorreo', 'UsuCargo'],
     orderBy: ['UsuLogin'],
     fields: {
       GECODEMP: number({ serverValue: 'contextCompany' }),
       UsuLogin: text(10, { required: true, upper: true }),
-      UsuClave: text(64, { writeOnly: true, password: true }),
+      UsuClave: text(10, { writeOnly: true, password: true }),
       UsuRut: number({ required: true }),
       UsuDV: text(1, { required: true, upper: true }),
       Usunom: text(35, { required: true }),
       UsuCargo: text(30, { defaultValue: ' ' }),
-      UsuExpira: dateTime(),
       usucrea: text(10, { serverValueOnInsert: 'contextLogin' }),
-      UsuNseg: number({ defaultValue: 0 }),
-      UsuCorreo: text(30, { defaultValue: ' ' }),
+      UsuCorreo: text(80, { defaultValue: ' ' }),
       UsuEstado: number({ required: true, defaultValue: 1 }),
       UsuPerfil: text(10, { defaultValue: ' ' }),
-      UsuTipo: number({ required: true, defaultValue: 0 })
+      UsuTipo: number({ required: true, defaultValue: 0 }),
+      usuFecCrea: dateTime({ serverValueOnInsert: 'serverDate' })
     }
   },
   roles: {
@@ -67,7 +66,7 @@ const catalogs = {
       RXUFecCrea: dateTime({ serverValueOnInsert: 'serverDate' })
     },
     references: [
-      { table: 'SEGUSUEMP', pairs: [['GECODEMP', 'GECODEMP'], ['UsuLogin', 'UsuLogin']], message: 'El usuario indicado no existe en la empresa.' },
+      { table: 'USUARIOS', pairs: [['GECODEMP', 'GECODEMP'], ['UsuLogin', 'UsuLogin']], message: 'El usuario indicado no existe en la empresa.' },
       { table: 'UROLES', pairs: [['ROLCod', 'ROLCod']], message: 'El rol indicado no existe.' }
     ]
   },
@@ -119,7 +118,7 @@ const catalogs = {
       ProgDes: text(35, { required: true }),
       ProgFcrea: date({ serverValueOnInsert: 'serverDate' }),
       ProgTipo: number({ defaultValue: 0 }),
-      ProgNomGX: text(20, { defaultValue: ' ' }),
+      ProgNomGX: text(100, { defaultValue: ' ' }),
       ProgIDmenu: text(20, { defaultValue: ' ' }),
       ProgTarget: text(20, { defaultValue: ' ' })
     },
@@ -143,25 +142,6 @@ const catalogs = {
     },
     references: [{ table: 'PROGRAM', pairs: [['SistCod', 'SistCod'], ['Modcod', 'Modcod'], ['ProgCod', 'ProgCod']], message: 'El programa padre no existe.' }]
   },
-  niveles: {
-    gxObject: 'NivSeg',
-    table: 'NIVSEG',
-    primaryKey: ['NSegMod', 'NSegProg'],
-    columns: ['NSegMod', 'NSegDMod', 'NSegProg', 'NsegDes', 'NSegIns', 'NsegDel', 'NsegUPD', 'NsegPRC', 'NsegLogA'],
-    searchColumns: ['NSegMod', 'NSegDMod', 'NSegProg', 'NsegDes'],
-    orderBy: ['NSegMod', 'NSegProg'],
-    fields: {
-      NSegMod: number({ required: true, min: 1 }),
-      NSegDMod: text(30),
-      NSegProg: number({ required: true, min: 1 }),
-      NsegDes: text(35),
-      NSegIns: number(),
-      NsegDel: number(),
-      NsegUPD: number(),
-      NsegPRC: number(),
-      NsegLogA: text(10, { serverValueOnInsert: 'contextLogin' })
-    }
-  },
   asignacionesSistemas: {
     gxObject: 'AsigSist',
     table: 'ASIGSIST',
@@ -177,7 +157,7 @@ const catalogs = {
       SistCod: number({ required: true, min: 1 })
     },
     references: [
-      { table: 'SEGUSUEMP', pairs: [['GECODEMP', 'GECODEMP'], ['AsgSisLogin', 'UsuLogin']], message: 'El usuario indicado no existe en la empresa.' },
+      { table: 'USUARIOS', pairs: [['GECODEMP', 'GECODEMP'], ['AsgSisLogin', 'UsuLogin']], message: 'El usuario indicado no existe en la empresa.' },
       { table: 'SISTEMAS', pairs: [['SistCod', 'SistCod']], message: 'El sistema indicado no existe.' }
     ]
   },
@@ -241,6 +221,7 @@ const quote = (name) => `[${name}]`;
 const isFilled = (value) => value !== undefined && value !== null && value !== '';
 
 const sqlType = (field) => {
+  if (field.serverValue === 'contextCompany') return sql.Decimal(10, 0);
   if (field.type === 'number') return sql.Int;
   if (field.type === 'date') return sql.Date;
   if (field.type === 'datetime') return sql.DateTime2;
@@ -312,7 +293,7 @@ const enrichValues = async (transaction, catalogName, values, context) => {
     values.AsigAsig = context.login;
 
     const parent = await transaction.request()
-      .input('empresa', sql.Int, context.empCod).input('usuario', sql.VarChar(10), values.AsigUsu).input('sistema', sql.Int, values.SistCod)
+      .input('empresa', sql.Decimal(10, 0), context.empCod).input('usuario', sql.VarChar(10), values.AsigUsu).input('sistema', sql.Int, values.SistCod)
       .query('SELECT TOP (1) 1 AS found FROM ASIGSIST WHERE GECODEMP=@empresa AND AsgSisLogin=@usuario AND SistCod=@sistema');
     if (!parent.recordset.length) throw new SecurityError(400, 'MISSING_PARENT_ASSIGNMENT', 'Primero debe asignar el sistema al usuario.');
   }
@@ -320,7 +301,7 @@ const enrichValues = async (transaction, catalogName, values, context) => {
   if (catalogName === 'asignacionesProgramas') {
     values.ProgUsuC = context.login;
     const parent = await transaction.request()
-      .input('empresa', sql.Int, context.empCod).input('usuario', sql.VarChar(10), values.UsuLogin)
+      .input('empresa', sql.Decimal(10, 0), context.empCod).input('usuario', sql.VarChar(10), values.UsuLogin)
       .input('sistema', sql.Int, values.SistCod).input('modulo', sql.Int, values.Modcod)
       .query('SELECT TOP (1) 1 AS found FROM ASIG WHERE GECODEMP=@empresa AND AsigUsu=@usuario AND SistCod=@sistema AND AsigMod=@modulo');
     if (!parent.recordset.length) throw new SecurityError(400, 'MISSING_PARENT_ASSIGNMENT', 'Primero debe asignar el modulo al usuario.');
@@ -332,7 +313,7 @@ const enrichValues = async (transaction, catalogName, values, context) => {
   }
 
   if (catalogName === 'asignacionesAcciones') {
-    const parent = await transaction.request().input('empresa', sql.Int, context.empCod).input('usuario', sql.VarChar(10), values.UsuLogin)
+    const parent = await transaction.request().input('empresa', sql.Decimal(10, 0), context.empCod).input('usuario', sql.VarChar(10), values.UsuLogin)
       .input('sistema', sql.Int, values.SistCod).input('modulo', sql.Int, values.Modcod).input('programa', sql.Int, values.ProgCod)
       .query('SELECT TOP (1) 1 AS found FROM ASIGPROG WHERE GECODEMP=@empresa AND UsuLogin=@usuario AND SistCod=@sistema AND Modcod=@modulo AND ProgCod=@programa');
     if (!parent.recordset.length) throw new SecurityError(400, 'MISSING_PARENT_ASSIGNMENT', 'Primero debe asignar el programa al usuario.');
@@ -346,7 +327,7 @@ const enrichValues = async (transaction, catalogName, values, context) => {
 
 const listUsers = async (query, context) => {
   const pool = await getPool();
-  const request = pool.request().input('contextCompany', sql.Int, context.empCod);
+  const request = pool.request().input('contextCompany', sql.Decimal(10, 0), context.empCod);
   const limit = Math.min(Math.max(Number(query.limit) || DEFAULT_LIMIT, 1), MAX_LIMIT);
   let search = '';
 
@@ -361,12 +342,10 @@ const listUsers = async (query, context) => {
 
   const result = await request.query(`
     SELECT TOP (${limit})
-      UE.GECODEMP, U.UsuLogin, U.UsuRut, U.UsuDV, U.Usunom, U.UsuCargo,
-      U.UsuExpira, U.usucrea, U.UsuNseg, U.UsuCorreo,
-      UE.UsuEstado, UE.UsuPerfil, UE.UsuTipo
-    FROM USUARIOS U
-    INNER JOIN SEGUSUEMP UE ON UE.UsuLogin=U.UsuLogin
-    WHERE UE.GECODEMP=@contextCompany ${search}
+      U.GECODEMP, U.UsuLogin, U.UsuRut, U.UsuDV, U.Usunom, U.UsuCargo,
+      U.usucrea, U.UsuCorreo, U.UsuEstado, U.UsuPerfil, U.UsuTipo, U.usuFecCrea
+    FROM VW_APERP_SEG_USUARIOS U
+    WHERE U.GECODEMP=@contextCompany ${search}
     ORDER BY U.UsuLogin
   `);
 
@@ -375,7 +354,7 @@ const listUsers = async (query, context) => {
 
 const listRoles = async (query, context) => {
   const pool = await getPool();
-  const request = pool.request().input('contextCompany', sql.Int, context.empCod);
+  const request = pool.request().input('contextCompany', sql.Decimal(10, 0), context.empCod);
   const limit = Math.min(Math.max(Number(query.limit) || DEFAULT_LIMIT, 1), MAX_LIMIT);
   let search = '';
 
@@ -410,7 +389,7 @@ const list = async (catalogName, query, context) => {
   const limit = Math.min(Math.max(Number(query.limit) || DEFAULT_LIMIT, 1), MAX_LIMIT);
 
   if (config.companyColumn) {
-    request.input('contextCompany', sql.Int, context.empCod);
+    request.input('contextCompany', sql.Decimal(10, 0), context.empCod);
     where.push(`${quote(config.companyColumn)}=@contextCompany`);
   }
 
@@ -435,9 +414,10 @@ const list = async (catalogName, query, context) => {
   return { data: result.recordset, meta: { gxObject: config.gxObject, gxLevel: config.gxLevel || 1, table: config.table } };
 };
 
-const storeModernPassword = async (transaction, login, password, migratedFromGx = false) => {
+const storeModernPassword = async (transaction, empCod, login, password, migratedFromGx = false) => {
   const modern = await hashPassword(String(password));
   await transaction.request()
+    .input('empCod', sql.Decimal(10, 0), empCod)
     .input('login', sql.VarChar(10), login)
     .input('salt', sql.VarChar(64), modern.salt)
     .input('hash', sql.VarChar(256), modern.hash)
@@ -445,10 +425,10 @@ const storeModernPassword = async (transaction, login, password, migratedFromGx 
     .query(`
       UPDATE SEGUSUCRED
       SET PasswordSalt=@salt, PasswordHash=@hash, MigradoDesdeGX=@migrated, FechaCambio=SYSUTCDATETIME()
-      WHERE UsuLogin=@login;
+      WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login;
       IF @@ROWCOUNT=0
-        INSERT INTO SEGUSUCRED (UsuLogin,PasswordSalt,PasswordHash,MigradoDesdeGX,FechaCambio)
-        VALUES (@login,@salt,@hash,@migrated,SYSUTCDATETIME());
+        INSERT INTO SEGUSUCRED (GECODEMP,UsuLogin,PasswordSalt,PasswordHash,MigradoDesdeGX,FechaCambio)
+        VALUES (@empCod,@login,@salt,@hash,@migrated,SYSUTCDATETIME());
     `);
 };
 
@@ -458,8 +438,8 @@ const insertUser = async (payload, context) => {
   for (const [name, field] of Object.entries(config.fields)) {
     values[name] = resolveValue(name, field, payload, context, true);
   }
-  if (!isFilled(values.UsuClave) || String(values.UsuClave).length < 8) {
-    throw new SecurityError(400, 'VALIDATION_ERROR', 'UsuClave debe tener al menos 8 caracteres.');
+  if (!isFilled(values.UsuClave) || String(values.UsuClave).length < 8 || String(values.UsuClave).length > 10) {
+    throw new SecurityError(400, 'VALIDATION_ERROR', 'UsuClave debe tener entre 8 y 10 caracteres durante la convivencia con GeneXus.');
   }
   parseRut(`${values.UsuRut}-${values.UsuDV}`);
 
@@ -468,48 +448,40 @@ const insertUser = async (payload, context) => {
   await transaction.begin();
   try {
     const duplicate = await transaction.request()
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('login', sql.VarChar(10), values.UsuLogin)
       .input('rut', sql.Int, values.UsuRut)
-      .query('SELECT TOP (1) 1 AS found FROM USUARIOS WHERE RTRIM(UsuLogin)=@login OR UsuRut=@rut');
+      .query('SELECT TOP (1) 1 AS found FROM USUARIOS WHERE GECODEMP=@empCod AND (RTRIM(UsuLogin)=@login OR UsuRut=@rut)');
     if (duplicate.recordset.length) {
       throw new SecurityError(409, 'DUPLICATE_USER', 'Ya existe un usuario con ese login o RUT.');
     }
 
-    const company = await transaction.request().input('empCod', sql.Int, context.empCod)
-      .query('SELECT TOP (1) 1 AS found FROM DEFEMP WHERE EmpCod=@empCod');
-    if (!company.recordset.length) throw new SecurityError(400, 'INVALID_COMPANY', 'La empresa de la sesion no existe en DEFEMP.');
+    const company = await transaction.request().input('empCod', sql.Decimal(10, 0), context.empCod)
+      .query('SELECT TOP (1) 1 AS found FROM VW_APERP_SEG_EMPRESAS WHERE GECODEMP=@empCod');
+    if (!company.recordset.length) throw new SecurityError(400, 'INVALID_COMPANY', 'La empresa de la sesion no existe en g_emp.');
 
     await transaction.request()
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('login', sql.VarChar(10), values.UsuLogin)
+      .input('legacyPassword', sql.NVarChar(10), values.UsuClave)
       .input('rut', sql.Int, values.UsuRut)
       .input('dv', sql.VarChar(1), values.UsuDV)
       .input('name', sql.VarChar(35), values.Usunom)
       .input('position', sql.VarChar(30), values.UsuCargo)
-      .input('expires', sql.DateTime2, values.UsuExpira)
       .input('creator', sql.VarChar(10), values.usucrea)
-      .input('level', sql.Int, values.UsuNseg)
-      .input('email', sql.VarChar(30), values.UsuCorreo)
-      .query(`
-        INSERT INTO USUARIOS
-          (UsuLogin,UsuClave,UsuRut,UsuDV,Usunom,UsuCargo,UsuExpira,usucrea,UsuNseg,UsuCorreo)
-        VALUES
-          (@login,NULL,@rut,@dv,@name,@position,@expires,@creator,@level,@email)
-      `);
-
-    await transaction.request()
-      .input('empCod', sql.Int, context.empCod)
-      .input('login', sql.VarChar(10), values.UsuLogin)
+      .input('email', sql.VarChar(80), values.UsuCorreo)
       .input('status', sql.Int, values.UsuEstado)
       .input('profile', sql.VarChar(10), values.UsuPerfil)
       .input('type', sql.Int, values.UsuTipo)
-      .input('creator', sql.VarChar(10), context.login)
+      .input('createdAt', sql.DateTime2, values.usuFecCrea)
       .query(`
-        INSERT INTO SEGUSUEMP
-          (GECODEMP,UsuLogin,UsuEstado,UsuPerfil,UsuTipo,EsPrincipal,UsuCrea)
-        VALUES (@empCod,@login,@status,@profile,@type,1,@creator)
+        INSERT INTO USUARIOS
+          (GECODEMP,UsuLogin,UsuClave,UsuRut,UsuDV,Usunom,UsuCargo,usucrea,UsuCorreo,UsuEstado,UsuPerfil,UsuTipo,usuFecCrea)
+        VALUES
+          (@empCod,@login,@legacyPassword,@rut,@dv,@name,@position,@creator,@email,@status,@profile,@type,@createdAt)
       `);
 
-    await storeModernPassword(transaction, values.UsuLogin, values.UsuClave);
+    await storeModernPassword(transaction, context.empCod, values.UsuLogin, values.UsuClave);
     await transaction.commit();
     return { message: 'Usuario creado correctamente.' };
   } catch (error) {
@@ -556,7 +528,7 @@ const updateUser = async (payload, context) => {
   const login = validateValue('UsuLogin', catalogs.usuarios.fields.UsuLogin, payload.UsuLogin);
   if (!isFilled(login)) throw new SecurityError(400, 'VALIDATION_ERROR', 'UsuLogin es obligatorio.');
 
-  const editable = ['UsuRut', 'UsuDV', 'Usunom', 'UsuCargo', 'UsuExpira', 'UsuNseg', 'UsuCorreo', 'UsuEstado', 'UsuPerfil', 'UsuTipo'];
+  const editable = ['UsuRut', 'UsuDV', 'Usunom', 'UsuCargo', 'UsuCorreo', 'UsuEstado', 'UsuPerfil', 'UsuTipo'];
   const hasChanges = editable.some((name) => isFilled(payload[name])) || isFilled(payload.UsuClave);
   if (!hasChanges) throw new SecurityError(400, 'NO_CHANGES', 'No hay campos para actualizar.');
 
@@ -565,13 +537,12 @@ const updateUser = async (payload, context) => {
   await transaction.begin();
   try {
     const current = await transaction.request()
-      .input('empCod', sql.Int, context.empCod)
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('login', sql.VarChar(10), login)
       .query(`
-        SELECT U.UsuRut,U.UsuDV,U.Usunom,U.UsuCargo,U.UsuExpira,U.UsuNseg,U.UsuCorreo,
-               UE.UsuEstado,UE.UsuPerfil,UE.UsuTipo
-        FROM USUARIOS U INNER JOIN SEGUSUEMP UE ON UE.UsuLogin=U.UsuLogin
-        WHERE UE.GECODEMP=@empCod AND RTRIM(U.UsuLogin)=@login
+        SELECT UsuRut,UsuDV,Usunom,UsuCargo,UsuCorreo,UsuEstado,UsuPerfil,UsuTipo
+        FROM USUARIOS
+        WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login
       `);
     if (!current.recordset[0]) throw new SecurityError(404, 'NOT_FOUND', 'El usuario no existe en la empresa.');
 
@@ -582,38 +553,44 @@ const updateUser = async (payload, context) => {
     const values = Object.fromEntries(editable.map((name) => [name, value(name)]));
     parseRut(`${values.UsuRut}-${String(values.UsuDV || '').trim()}`);
 
+    const duplicateRut = await transaction.request()
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
+      .input('login', sql.VarChar(10), login)
+      .input('rut', sql.Int, values.UsuRut)
+      .query('SELECT TOP (1) 1 AS found FROM USUARIOS WHERE GECODEMP=@empCod AND UsuRut=@rut AND RTRIM(UsuLogin)<>@login');
+    if (duplicateRut.recordset.length) {
+      throw new SecurityError(409, 'DUPLICATE_USER', 'Ya existe otro usuario con ese RUT en la empresa.');
+    }
+
     await transaction.request()
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('login', sql.VarChar(10), login)
       .input('rut', sql.Int, values.UsuRut)
       .input('dv', sql.VarChar(1), String(values.UsuDV || '').trim())
       .input('name', sql.VarChar(35), String(values.Usunom || '').trim())
       .input('position', sql.VarChar(30), String(values.UsuCargo || '').trim())
-      .input('expires', sql.DateTime2, values.UsuExpira)
-      .input('level', sql.Int, values.UsuNseg)
-      .input('email', sql.VarChar(30), String(values.UsuCorreo || '').trim())
-      .query(`
-        UPDATE USUARIOS SET UsuRut=@rut,UsuDV=@dv,Usunom=@name,UsuCargo=@position,
-          UsuExpira=@expires,UsuNseg=@level,UsuCorreo=@email
-        WHERE RTRIM(UsuLogin)=@login
-      `);
-
-    await transaction.request()
-      .input('empCod', sql.Int, context.empCod)
-      .input('login', sql.VarChar(10), login)
+      .input('email', sql.VarChar(80), String(values.UsuCorreo || '').trim())
       .input('status', sql.Int, values.UsuEstado)
       .input('profile', sql.VarChar(10), String(values.UsuPerfil || '').trim())
       .input('type', sql.Int, values.UsuTipo)
       .query(`
-        UPDATE SEGUSUEMP SET UsuEstado=@status,UsuPerfil=@profile,UsuTipo=@type
+        UPDATE USUARIOS
+        SET UsuRut=@rut,UsuDV=@dv,Usunom=@name,UsuCargo=@position,UsuCorreo=@email,
+            UsuEstado=@status,UsuPerfil=@profile,UsuTipo=@type
         WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login
       `);
 
     if (isFilled(payload.UsuClave)) {
       const password = String(payload.UsuClave);
-      if (password.length < 8 || password.length > 64) {
-        throw new SecurityError(400, 'VALIDATION_ERROR', 'UsuClave debe tener entre 8 y 64 caracteres.');
+      if (password.length < 8 || password.length > 10) {
+        throw new SecurityError(400, 'VALIDATION_ERROR', 'UsuClave debe tener entre 8 y 10 caracteres durante la convivencia con GeneXus.');
       }
-      await storeModernPassword(transaction, login, password);
+      await transaction.request()
+        .input('empCod', sql.Decimal(10, 0), context.empCod)
+        .input('login', sql.VarChar(10), login)
+        .input('legacyPassword', sql.NVarChar(10), password)
+        .query('UPDATE USUARIOS SET UsuClave=@legacyPassword WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login');
+      await storeModernPassword(transaction, context.empCod, login, password);
     }
 
     await transaction.commit();
@@ -680,13 +657,13 @@ const removeUser = async (payload, context) => {
   await transaction.begin();
   try {
     const membership = await transaction.request()
-      .input('empCod', sql.Int, context.empCod)
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('login', sql.VarChar(10), login)
-      .query('SELECT TOP (1) 1 AS found FROM SEGUSUEMP WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login');
+      .query('SELECT TOP (1) 1 AS found FROM USUARIOS WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login');
     if (!membership.recordset.length) throw new SecurityError(404, 'NOT_FOUND', 'El usuario no existe en la empresa.');
 
     const assignments = await transaction.request()
-      .input('empCod', sql.Int, context.empCod)
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('login', sql.VarChar(10), login)
       .query(`
         SELECT TOP (1) 1 AS found FROM (
@@ -702,22 +679,14 @@ const removeUser = async (payload, context) => {
     }
 
     await transaction.request()
-      .input('empCod', sql.Int, context.empCod)
+      .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('login', sql.VarChar(10), login)
       .query(`
         DELETE FROM URolesPorUser WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login;
-        DELETE FROM SEGSESION WHERE EmpCod=@empCod AND RTRIM(UsuLogin)=@login;
-        DELETE FROM SEGUSUEMP WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login;
+        DELETE FROM SEGSESION WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login;
+        DELETE FROM SEGUSUCRED WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login;
+        DELETE FROM USUARIOS WHERE GECODEMP=@empCod AND RTRIM(UsuLogin)=@login;
       `);
-
-    const remaining = await transaction.request().input('login', sql.VarChar(10), login)
-      .query('SELECT COUNT(*) AS total FROM SEGUSUEMP WHERE RTRIM(UsuLogin)=@login');
-    if (Number(remaining.recordset[0].total) === 0) {
-      await transaction.request().input('login', sql.VarChar(10), login).query(`
-        DELETE FROM SEGUSUCRED WHERE RTRIM(UsuLogin)=@login;
-        DELETE FROM USUARIOS WHERE RTRIM(UsuLogin)=@login;
-      `);
-    }
 
     await transaction.commit();
     return { message: 'Usuario eliminado correctamente.' };
@@ -791,7 +760,7 @@ const remove = async (catalogName, payload, context) => {
         .query('DELETE FROM PROGRAM1 WHERE SistCod=@s AND Modcod=@m AND ProgCod=@p');
     }
     if (catalogName === 'asignacionesProgramas') {
-      await transaction.request().input('e', sql.Int, values.GECODEMP).input('u', sql.VarChar(10), values.UsuLogin)
+      await transaction.request().input('e', sql.Decimal(10, 0), values.GECODEMP).input('u', sql.VarChar(10), values.UsuLogin)
         .input('s', sql.Int, values.SistCod).input('m', sql.Int, values.Modcod).input('p', sql.Int, values.ProgCod)
         .query('DELETE FROM ASIGPROG1 WHERE GECODEMP=@e AND UsuLogin=@u AND SistCod=@s AND Modcod=@m AND ProgCod=@p');
     }

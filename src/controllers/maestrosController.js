@@ -6,25 +6,41 @@ const MAX_LIMIT = 1000;
 
 const catalogos = {
   empresas: {
-    table: 'DEFEMP',
+    table: 'g_emp',
     gxLevel: 1,
-    // DEFEMP es la raiz multiempresa; sus hijos usan EmpCod desde la sesion.
+    // g_emp es la transaccion Empresas de APERP y la raiz de GECODEMP.
     requiresEmpCod: false,
-    rutFields: { number: 'EmpRut', verifier: 'EmpDV' },
-    primaryKey: ['EmpCod'],
-    columns: ['EmpCod', 'EmpNom', 'EmpGiro', 'Empdir', 'EmpRut', 'EmpDV', 'EmpSw', 'empreg', 'Empcom'],
-    orderBy: ['EmpCod'],
-    searchColumns: ['EmpNom', 'EmpRut'],
+    allowDelete: false,
+    trimTextColumns: true,
+    rutFields: { number: 'GErut', verifier: 'GEDv' },
+    primaryKey: ['GECODEMP'],
+    columns: [
+      'GECODEMP', 'GERAZSOC', 'GerazSMS', 'GEgiro1', 'GEgiro2', 'GEfonNum', 'GErut', 'GEDv',
+      'GEdire', 'GEregion', 'GEciudad', 'GeComuna', 'GeCordinador', 'geCorreo', 'GeEstado',
+      'GePaginaWeb', 'GeFecContIni', 'GeFecContFin'
+    ],
+    orderBy: ['GECODEMP'],
+    searchColumns: ['GERAZSOC', 'GerazSMS', 'GErut', 'GEdire', 'GEciudad', 'GeComuna', 'geCorreo'],
     fields: {
-      EmpCod: { type: 'int', required: true, min: 1 },
-      EmpNom: { type: 'text', length: 50, required: true },
-      EmpGiro: { type: 'text', length: 35, required: true },
-      Empdir: { type: 'text', length: 30, required: true },
-      EmpRut: { type: 'int', required: true },
-      EmpDV: { type: 'text', length: 1, required: true },
-      EmpSw: { type: 'int', required: true, choices: [0, 1], insertDefault: 0 },
-      empreg: { type: 'text', length: 4, required: true },
-      Empcom: { type: 'text', length: 20, required: true }
+      GECODEMP: { type: 'decimal', precision: 10, scale: 0, required: true, min: 1 },
+      GERAZSOC: { type: 'text', length: 50, unicode: true, required: true },
+      GerazSMS: { type: 'text', length: 20, unicode: true, insertDefault: '' },
+      GEgiro1: { type: 'text', length: 40, unicode: true, insertDefault: '' },
+      GEgiro2: { type: 'text', length: 40, unicode: true },
+      GEfonNum: { type: 'decimal', precision: 10, scale: 0, min: 0, insertDefault: 0 },
+      GErut: { type: 'int', required: true, min: 1, max: 999999999 },
+      GEDv: { type: 'text', length: 1, unicode: true, required: true, uppercase: true },
+      GEdire: { type: 'text', length: 50, unicode: true, insertDefault: '' },
+      GEregion: { type: 'text', length: 25, unicode: true, insertDefault: '' },
+      GEciudad: { type: 'text', length: 25, unicode: true, insertDefault: '' },
+      GeComuna: { type: 'text', length: 25, unicode: true, insertDefault: '' },
+      GeCordinador: { type: 'text', length: 25, unicode: true, insertDefault: '' },
+      geCorreo: { type: 'text', length: 80, unicode: true, insertDefault: '' },
+      GeEstado: { type: 'int', required: true, choices: [0, 1], insertDefault: 1 },
+      GeLogo: { type: 'binary', serverManaged: true, serverValueOnInsert: 'emptyBinary' },
+      GePaginaWeb: { type: 'text', length: 50, unicode: true, insertDefault: '' },
+      GeFecContIni: { type: 'date', required: true },
+      GeFecContFin: { type: 'date', required: true }
     }
   },
   temporadas: {
@@ -346,6 +362,9 @@ const getDbColumn = (config, fieldName) => config.columnMap?.[fieldName] || fiel
 
 const getSelectColumn = (config, fieldName) => {
   const dbColumn = getDbColumn(config, fieldName);
+  if (config.trimTextColumns && config.fields?.[fieldName]?.type === 'text') {
+    return `RTRIM(${quoteName(dbColumn)}) AS ${quoteName(fieldName)}`;
+  }
   return dbColumn === fieldName ? quoteName(fieldName) : `${quoteName(dbColumn)} AS ${quoteName(fieldName)}`;
 };
 
@@ -522,6 +541,8 @@ const getSqlType = (field) => {
   if (field.type === 'int') return sql.Int;
   if (field.type === 'date') return sql.Date;
   if (field.type === 'decimal') return sql.Decimal(field.precision || 18, field.scale ?? 4);
+  if (field.type === 'binary') return sql.VarBinary(sql.MAX);
+  if (field.unicode) return sql.NVarChar(field.length || 255);
   return sql.VarChar(field.length || 255);
 };
 
@@ -613,6 +634,11 @@ const normalizeValue = (fieldName, field, value, required = false) => {
     return numberValue;
   }
 
+  if (field.type === 'binary') {
+    if (Buffer.isBuffer(value)) return value;
+    throw httpError(400, `Campo invalido: ${fieldName} debe ser binario`);
+  }
+
   const textValue = String(value).trim();
   if (textValue === '') {
     if (required) throw httpError(400, `Campo requerido: ${fieldName}`);
@@ -649,6 +675,7 @@ const getKeyPayload = (req, config) => config.primaryKey.reduce((payload, column
 const getInsertValue = (req, config, column, field) => {
   if (field.serverValueOnInsert === 'serverDate') return new Date();
   if (field.serverValueOnInsert === 'contextLogin') return req.context?.login || 'MIGRACION';
+  if (field.serverValueOnInsert === 'emptyBinary') return Buffer.alloc(0);
 
   const suppliedValue = getCatalogWriteParam(req, config, column);
   if (suppliedValue !== undefined && suppliedValue !== null && suppliedValue !== '') return suppliedValue;
@@ -854,6 +881,9 @@ const assertDeleteDependencies = async (pool, req, config) => {
 const deleteCatalog = (catalogName) => async (req, res) => {
   try {
     const config = getWritableCatalog(catalogName);
+    if (config.allowDelete === false) {
+      throw httpError(405, 'La eliminacion de empresas esta deshabilitada para proteger sus datos relacionados');
+    }
     const pool = await getPool();
     const request = pool.request();
 

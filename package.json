@@ -7,6 +7,8 @@
     "catalog:gx8": "node scripts/catalog-gx8-procedures.js",
     "catalog:gx8:project": "node scripts/catalog-gx8-project.js",
     "db:sql": "node scripts/run-sql-file.js",
+    "verify:aperp-security": "node scripts/run-sql-file.js database/verify_aperp_security_alignment.sql",
+    "verify:aperp-company": "node scripts/verify-aperp-company-master.js",
     "verify:conex": "node scripts/verify-conex-migration.js",
     "test": "node --test",
     "start": "node index.js"

@@ -1,0 +1,143 @@
+{
+  "generatedAt": "2026-08-02T19:29:23.122Z",
+  "verdict": "NOT_EQUIVALENT",
+  "verdictReason": "La base local contiene solo una fraccion del esquema fisico declarado por el XPZ actual.",
+  "safety": {
+    "comparisonMode": "READ_ONLY attached copy",
+    "databaseWasReadOnly": true,
+    "originalFilesModified": false
+  },
+  "sourceFiles": {
+    "mdf": {
+      "path": "C:\\paso\\BDatos_APERP\\BDAPERP.mdf",
+      "sizeBytes": 8388608,
+      "lastWriteTime": "2025-12-31T14:09:36.600Z",
+      "sha256": "da1f1eacca3b6b82d98379587d878205aee93c19c68e890a8d9639ba2ef369ab"
+    },
+    "ldf": {
+      "path": "C:\\paso\\BDatos_APERP\\BDAPERP_log.ldf",
+      "sizeBytes": 8388608,
+      "lastWriteTime": "2025-12-31T14:09:36.615Z",
+      "sha256": "e790ca9ea0b8aa2004b6dc020e193d334af7176e83651e65ac53a11c1ab76903"
+    },
+    "originalDatabaseVersion": "852",
+    "newerNetworkReference": {
+      "observedSizeBytes": 75497472,
+      "observedLastWriteTime": "2026-07-31T10:28:57-05:00",
+      "availableDuringComparison": false
+    }
+  },
+  "sqlServer": {
+    "serverName": "DESKTOP-SOOAP92\\SQLEXPRESS",
+    "productVersion": "16.0.1000.6",
+    "edition": "Express Edition (64-bit)",
+    "databaseName": "BDAPERP_CODEX_STUDY_20260802",
+    "createDate": "2026-08-02T14:20:49.230",
+    "compatibilityLevel": 130,
+    "collation": "Modern_Spanish_CI_AS",
+    "state": "ONLINE",
+    "userAccess": "MULTI_USER",
+    "isReadOnly": true,
+    "allocatedBytes": 16777216
+  },
+  "modelSource": {
+    "label": "\\\\apserver01\\Respaldos\\EXpor_APERP\\APERP_Base de conocimiento.xpz",
+    "analyzedCopy": "C:\\Users\\andre\\AppData\\Local\\Temp\\APERP_Base_de_conocimiento_20260730.xpz",
+    "archiveEntry": "APERP_Base de conocimiento.xml",
+    "size": 25107181,
+    "sha256": "c05c2c680d18fab6cd53fdd30460cb91e41591b258d1bc794463fb3cfaa7be8a"
+  },
+  "modelKnowledgeBase": {
+    "name": "APERP",
+    "sourcePath": "\\\\DESKTOP-T2MQM0S\\D$\\ModGx18\\APERP",
+    "kmwMajor": "4",
+    "kmwMinor": "0",
+    "kmwBuild": "185416",
+    "environment": "NETFrameworkSQLServer",
+    "generatedLanguage": ".NET Framework",
+    "multiTenant": "False",
+    "startupObject": "c9584656-94b6-4ccd-890f-332d11fc2c25-WWPBaseObjects.SecLogIn",
+    "generator": "Default",
+    "generatorId": "15",
+    "dataStore": "Default",
+    "dbmsId": "12",
+    "databaseReferentialIntegrity": "No"
+  },
+  "counts": {
+    "modelTables": 218,
+    "sqlTables": 61,
+    "exactTableNameMatches": 57,
+    "exactModelTableCoveragePercent": 26.1,
+    "exactSqlTableRecognitionPercent": 93.4,
+    "modelOnlyTables": 161,
+    "sqlOnlyTables": 4,
+    "likelyHistoricalRenames": 4,
+    "historicalCandidatesCoveringMissingModelTables": 3,
+    "modelStoredColumns": 2710,
+    "sqlColumns": 524,
+    "matchedColumnsOnExactTables": 459,
+    "missingColumnsOnExactTables": 119,
+    "extraColumnsOnExactTables": 11,
+    "typeFamilyMismatchesOnMatchedColumns": 3,
+    "sqlPrimaryKeys": 61,
+    "matchingPrimaryKeysOnExactTables": 53,
+    "differingPrimaryKeysOnExactTables": 4,
+    "sqlIndexes": 101,
+    "sqlForeignKeys": 0,
+    "sqlComputedColumns": 0,
+    "nonEmptySqlTables": 10
+  },
+  "nonEmptyTables": [
+    {
+      "table": "Asig",
+      "rows": 9
+    },
+    {
+      "table": "AsigProg",
+      "rows": 14
+    },
+    {
+      "table": "AsigSist",
+      "rows": 8
+    },
+    {
+      "table": "G_Emp",
+      "rows": 1
+    },
+    {
+      "table": "MenuItem",
+      "rows": 5
+    },
+    {
+      "table": "Modulos",
+      "rows": 3
+    },
+    {
+      "table": "Program",
+      "rows": 8
+    },
+    {
+      "table": "Sistemas",
+      "rows": 4
+    },
+    {
+      "table": "Usuarios",
+      "rows": 3
+    },
+    {
+      "table": "WWP_Parameter",
+      "rows": 8
+    }
+  ],
+  "sqlOnlyTables": [
+    "DefEmp",
+    "FactVentas1",
+    "MAUMed",
+    "PagosDoc1"
+  ],
+  "notes": [
+    "La ausencia de llaves foraneas es coherente con la configuracion GeneXus Database Referential Integrity = No, pero no prueba equivalencia.",
+    "Las coincidencias de tipo comparan familias logicas; no certifican por si solas precision, escala ni longitud.",
+    "Los candidatos de renombre son evidencia historica y no deben aplicarse como cambios automaticos."
+  ]
+}
