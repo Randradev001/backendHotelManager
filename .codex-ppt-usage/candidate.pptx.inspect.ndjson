@@ -1,0 +1,132 @@
+{"kind":"deck","id":"pr/0cid16","name":"Deck"}
+{"kind":"layout","layoutId":"c85e8a34-2357-4bd1-b745-a5e383b5c78b","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"36a384e9-35e0-4e96-b6c2-762c9e9f791a","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/uce8en","slide":1,"title":"HM TASKMANAGER","textShapes":5}
+{"kind":"textbox","id":"sh/4ne9o3ix","slide":1,"text":"HM TASKMANAGER","textPreview":"HM TASKMANAGER","textChars":14,"textLines":1,"bbox":[70,62,420,28]}
+{"kind":"textbox","id":"sh/3ml8fy1c","slide":1,"text":"Simple User Guide","textPreview":"Simple User Guide","textChars":17,"textLines":1,"bbox":[70,125,560,70]}
+{"kind":"textbox","id":"sh/ilcrmt0r","slide":1,"text":"Hotel maintenance operations","textPreview":"Hotel maintenance operations","textChars":28,"textLines":1,"bbox":[70,205,520,36]}
+{"kind":"textbox","id":"sh/dsnql8ze","slide":1,"text":"Login, review work, manage tasks and track progress across authorized hotels.","textPreview":"Login, review work, manage tasks and track progress across authorized hotels.","textChars":77,"textLines":1,"bbox":[70,285,500,100]}
+{"kind":"textbox","id":"sh/sre9s3it","slide":1,"text":"Prepared for hotel managers and maintenance teams","textPreview":"Prepared for hotel managers and maintenance teams","textChars":49,"textLines":1,"bbox":[70,570,510,28]}
+{"kind":"shape","id":"sh/rq58jy18","slide":1,"bbox":[697,52,516,616]}
+{"kind":"image","id":"im/jexofido","slide":1,"name":"","geometry":"roundRect","bbox":[700,55,510,610]}
+{"kind":"notes","id":"nt/uce8en","slide":1,"text":""}
+{"kind":"slide","id":"sl/5693ek","slide":2,"title":"Secure access","textShapes":13}
+{"kind":"textbox","id":"sh/ni58rex4","slide":2,"text":"Secure access","textPreview":"Secure access","textChars":13,"textLines":1,"bbox":[64,38,1040,48]}
+{"kind":"textbox","id":"sh/oje90jyp","slide":2,"text":"Sign in with email and select the hotel context when prompted.","textPreview":"Sign in with email and select the hotel context when prompted.","textChars":62,"textLines":1,"bbox":[64,91,1080,34]}
+{"kind":"textbox","id":"sh/9knqtofa","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1182,43,35,26]}
+{"kind":"shape","id":"sh/alwr2tgf","slide":2,"bbox":[61,152,656,476]}
+{"kind":"textbox","id":"sh/wny943yl","slide":2,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[760,190,38,38]}
+{"kind":"textbox","id":"sh/xo7ax8f6","slide":2,"text":"Enter your email","textPreview":"Enter your email","textChars":16,"textLines":1,"bbox":[814,190,376,30]}
+{"kind":"textbox","id":"sh/qpcrq9gb","slide":2,"text":"Use the email assigned by the system administrator.","textPreview":"Use the email assigned by the system administrator.","textChars":51,"textLines":1,"bbox":[814,223,376,55]}
+{"kind":"textbox","id":"sh/rql8juxw","slide":2,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[760,305,38,38]}
+{"kind":"textbox","id":"sh/buxc761s","slide":2,"text":"Enter your password","textPreview":"Enter your password","textChars":19,"textLines":1,"bbox":[814,305,376,30]}
+{"kind":"textbox","id":"sh/qtobe107","slide":2,"text":"Temporary passwords should be changed after first access.","textPreview":"Temporary passwords should be changed after first access.","textChars":57,"textLines":1,"bbox":[814,338,376,55]}
+{"kind":"textbox","id":"sh/dwfu9gjy","slide":2,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[760,420,38,38]}
+{"kind":"textbox","id":"sh/cv6dgbid","slide":2,"text":"Confirm the hotel","textPreview":"Confirm the hotel","textChars":17,"textLines":1,"bbox":[814,420,376,30]}
+{"kind":"textbox","id":"sh/36dc361w","slide":2,"text":"Users see only their authorized hotels. Administrators can view the full portfolio.","textPreview":"Users see only their authorized hotels. Administrators can view the full portfolio.","textChars":83,"textLines":1,"bbox":[814,453,376,55]}
+{"kind":"textbox","id":"sh/254ba10b","slide":2,"text":"HM TaskManager · Simple User Guide","textPreview":"HM TaskManager · Simple User Guide","textChars":34,"textLines":1,"bbox":[64,685,400,16]}
+{"kind":"image","id":"im/2lobe98j","slide":2,"name":"","geometry":"roundRect","bbox":[64,155,650,470]}
+{"kind":"notes","id":"nt/5693ek","slide":2,"text":""}
+{"kind":"slide","id":"sl/mmzcpl","slide":3,"title":"Management dashboard","textShapes":7}
+{"kind":"textbox","id":"sh/h0rad4jy","slide":3,"text":"Management dashboard","textPreview":"Management dashboard","textChars":20,"textLines":1,"bbox":[64,38,1040,48]}
+{"kind":"textbox","id":"sh/ux0rip0n","slide":3,"text":"The opening screen summarizes workload, risk and service performance.","textPreview":"The opening screen summarizes workload, risk and service performance.","textChars":69,"textLines":1,"bbox":[64,91,1080,34]}
+{"kind":"textbox","id":"sh/vy9sbu18","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1182,43,35,26]}
+{"kind":"shape","id":"sh/8vi9gf2h","slide":3,"bbox":[51,142,771,506]}
+{"kind":"textbox","id":"sh/mtgrepkb","slide":3,"text":"Read this screen first","textPreview":"Read this screen first","textChars":22,"textLines":1,"bbox":[860,165,330,32]}
+{"kind":"textbox","id":"sh/7ups7a1w","slide":3,"text":"Active backlog shows unfinished work.\n\nOverdue identifies orders past their expected completion date.\n\nOn-time completion and resolution time show service performance.\n\nUse the user filter to review an individual workload.","textPreview":"Active backlog shows unfinished work. |  | Overdue identifies orders past their expected completion date. |  | On-time completion and res...","textChars":222,"textLines":7,"bbox":[860,220,330,300]}
+{"kind":"shape","id":"sh/kry9cf2l","slide":3,"bbox":[860,545,330,62]}
+{"kind":"textbox","id":"sh/ls7a5kj6","slide":3,"text":"The conclusion highlights the action that needs management attention.","textPreview":"The conclusion highlights the action that needs management attention.","textChars":69,"textLines":1,"bbox":[882,557,285,38]}
+{"kind":"textbox","id":"sh/x8bmh83a","slide":3,"text":"HM TaskManager · Simple User Guide","textPreview":"HM TaskManager · Simple User Guide","textChars":34,"textLines":1,"bbox":[64,685,400,16]}
+{"kind":"image","id":"im/gbmx8bu1","slide":3,"name":"","geometry":"roundRect","bbox":[54,145,765,500]}
+{"kind":"notes","id":"nt/mmzcpl","slide":3,"text":""}
+{"kind":"slide","id":"sl/y2cdr8","slide":4,"title":"Work order register","textShapes":16}
+{"kind":"textbox","id":"sh/oru50vah","slide":4,"text":"Work order register","textPreview":"Work order register","textChars":19,"textLines":1,"bbox":[64,38,1040,48]}
+{"kind":"textbox","id":"sh/nq1orqtw","slide":4,"text":"Search, filter and manage every maintenance request from one list.","textPreview":"Search, filter and manage every maintenance request from one list.","textChars":66,"textLines":1,"bbox":[64,91,1080,34]}
+{"kind":"textbox","id":"sh/mpsnylsr","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1182,43,35,26]}
+{"kind":"shape","id":"sh/xw36x0be","slide":4,"bbox":[51,147,756,481]}
+{"kind":"textbox","id":"sh/bulovat8","slide":4,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[845,170,38,38]}
+{"kind":"textbox","id":"sh/atcn25sn","slide":4,"text":"Create","textPreview":"Create","textChars":6,"textLines":1,"bbox":[899,170,311,30]}
+{"kind":"textbox","id":"sh/d0jmlgbu","slide":4,"text":"Select New Work Order and enter title, location, priority, dates and tasks.","textPreview":"Select New Work Order and enter title, location, priority, dates and tasks.","textChars":75,"textLines":1,"bbox":[899,203,311,55]}
+{"kind":"textbox","id":"sh/czq5sba9","slide":4,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[845,285,38,38]}
+{"kind":"textbox","id":"sh/q1ojm5cb","slide":4,"text":"Review","textPreview":"Review","textChars":6,"textLines":1,"bbox":[899,285,311,30]}
+{"kind":"textbox","id":"sh/r2hkfadg","slide":4,"text":"Use the eye icon for details. Administrators can filter by hotel.","textPreview":"Use the eye icon for details. Administrators can filter by hotel.","textChars":65,"textLines":1,"bbox":[899,318,311,55]}
+{"kind":"textbox","id":"sh/s3q1ofu1","slide":4,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[845,400,38,38]}
+{"kind":"textbox","id":"sh/d4z2hkvm","slide":4,"text":"Update","textPreview":"Update","textChars":6,"textLines":1,"bbox":[899,400,311,30]}
+{"kind":"textbox","id":"sh/e58jqpc7","slide":4,"text":"Edit the order, manage tasks or open Change Status from the action icons.","textPreview":"Edit the order, manage tasks or open Change Status from the action icons.","textChars":73,"textLines":1,"bbox":[899,433,311,55]}
+{"kind":"textbox","id":"sh/fqhkjads","slide":4,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[845,515,38,38]}
+{"kind":"textbox","id":"sh/0rqlsfud","slide":4,"text":"Track dates","textPreview":"Track dates","textChars":11,"textLines":1,"bbox":[899,515,311,30]}
+{"kind":"textbox","id":"sh/1sz2lkby","slide":4,"text":"Red dates identify overdue work that still needs attention.","textPreview":"Red dates identify overdue work that still needs attention.","textChars":59,"textLines":1,"bbox":[899,548,311,55]}
+{"kind":"textbox","id":"sh/2ts3upc3","slide":4,"text":"HM TaskManager · Simple User Guide","textPreview":"HM TaskManager · Simple User Guide","textChars":34,"textLines":1,"bbox":[64,685,400,16]}
+{"kind":"image","id":"im/98ze94fa","slide":4,"name":"","geometry":"roundRect","bbox":[54,150,750,475]}
+{"kind":"notes","id":"nt/y2cdr8","slide":4,"text":""}
+{"kind":"slide","id":"sl/prqvqw","slide":5,"title":"Tasks and status rules","textShapes":10}
+{"kind":"textbox","id":"sh/lwb2lkbi","slide":5,"text":"Tasks and status rules","textPreview":"Tasks and status rules","textChars":22,"textLines":1,"bbox":[64,38,1040,48]}
+{"kind":"textbox","id":"sh/ytk3q5c7","slide":5,"text":"Each work order contains the specific tasks required to finish the job.","textPreview":"Each work order contains the specific tasks required to finish the job.","textChars":71,"textLines":1,"bbox":[64,91,1080,34]}
+{"kind":"textbox","id":"sh/zutkjatc","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1182,43,35,26]}
+{"kind":"shape","id":"sh/8zmlwzu9","slide":5,"bbox":[64,155,530,450]}
+{"kind":"textbox","id":"sh/90v2p4bu","slide":5,"text":"Task controls","textPreview":"Task controls","textChars":13,"textLines":1,"bbox":[98,185,420,32]}
+{"kind":"textbox","id":"sh/mx43upc3","slide":5,"text":"Each task has a status and an optional responsible worker.\n\nTO DO means work has not started.\n\nIN PROGRESS identifies active work.\n\nCOMPLETED closes the task.\n\nCANCELLED records work removed from scope.","textPreview":"Each task has a status and an optional responsible worker. |  | TO DO means work has not started. |  | IN PROGRESS identifies active work...","textChars":202,"textLines":9,"bbox":[98,240,430,275]}
+{"kind":"shape","id":"sh/7ydknuto","slide":5,"bbox":[98,520,420,55]}
+{"kind":"textbox","id":"sh/o3i1kvup","slide":5,"text":"A work order can finish only when every task is COMPLETED.","textPreview":"A work order can finish only when every task is COMPLETED.","textChars":58,"textLines":1,"bbox":[115,529,385,36]}
+{"kind":"shape","id":"sh/p4r2d0va","slide":5,"bbox":[650,155,540,450]}
+{"kind":"textbox","id":"sh/5wn2hgzi","slide":5,"text":"Header workflow","textPreview":"Header workflow","textChars":15,"textLines":1,"bbox":[690,190,420,34]}
+{"kind":"textbox","id":"sh/4ve1obyx","slide":5,"text":"NEW\n\nASSIGNED\n\nIN PROGRESS\n\nON HOLD\n\nCOMPLETED or CANCELLED","textPreview":"NEW |  | ASSIGNED |  | IN PROGRESS |  | ON HOLD |  | COMPLETED or CANCELLED","textChars":59,"textLines":9,"bbox":[690,250,210,285]}
+{"kind":"textbox","id":"sh/ju5kf6hc","slide":5,"text":"Assignment selects the worker.\n\nStarting work requires at least one open task.\n\nOn Hold requires a reason.\n\nCompletion requires a comment and all tasks completed.","textPreview":"Assignment selects the worker. |  | Starting work requires at least one open task. |  | On Hold requires a reason. |  | Completion requir...","textChars":162,"textLines":7,"bbox":[930,250,220,285]}
+{"kind":"textbox","id":"sh/itwjm1gr","slide":5,"text":"HM TaskManager · Simple User Guide","textPreview":"HM TaskManager · Simple User Guide","textChars":34,"textLines":1,"bbox":[64,685,400,16]}
+{"kind":"notes","id":"nt/prqvqw","slide":5,"text":""}
+{"kind":"slide","id":"sl/6bjn7v","slide":6,"title":"Work Board","textShapes":6}
+{"kind":"textbox","id":"sh/50r6dg3e","slide":6,"text":"Work Board","textPreview":"Work Board","textChars":10,"textLines":1,"bbox":[64,38,1040,48]}
+{"kind":"textbox","id":"sh/ixg72143","slide":6,"text":"The board provides a visual view of work by status and hotel.","textPreview":"The board provides a visual view of work by status and hotel.","textChars":61,"textLines":1,"bbox":[64,91,1080,34]}
+{"kind":"textbox","id":"sh/jy9ob6l8","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1182,43,35,26]}
+{"kind":"shape","id":"sh/wvyp0rmx","slide":6,"bbox":[42,142,796,506]}
+{"kind":"textbox","id":"sh/atg7y14r","slide":6,"text":"Daily use","textPreview":"Daily use","textChars":9,"textLines":1,"bbox":[875,165,300,32]}
+{"kind":"textbox","id":"sh/vupo7mlc","slide":6,"text":"Filter by hotel when working as an administrator.\n\nDrag a card to the next valid status.\n\nClick a card to update its tasks and responsible workers.\n\nThe card displays pending tasks, total tasks and completion percentage.\n\nCard colour matches the status lane.","textPreview":"Filter by hotel when working as an administrator. |  | Drag a card to the next valid status. |  | Click a card to update its tasks and re...","textChars":258,"textLines":9,"bbox":[875,220,300,330]}
+{"kind":"textbox","id":"sh/8rypwrml","slide":6,"text":"HM TaskManager · Simple User Guide","textPreview":"HM TaskManager · Simple User Guide","textChars":34,"textLines":1,"bbox":[64,685,400,16]}
+{"kind":"image","id":"im/s32pw7md","slide":6,"name":"","geometry":"roundRect","bbox":[45,145,790,500]}
+{"kind":"notes","id":"nt/6bjn7v","slide":6,"text":""}
+{"kind":"slide","id":"sl/rp5gxc","slide":7,"title":"Locations and categories","textShapes":8}
+{"kind":"textbox","id":"sh/zulw32ds","slide":7,"text":"Locations and categories","textPreview":"Locations and categories","textChars":24,"textLines":1,"bbox":[64,38,1040,48]}
+{"kind":"textbox","id":"sh/kvexw7ed","slide":7,"text":"Master records keep work orders consistent and easy to report.","textPreview":"Master records keep work orders consistent and easy to report.","textChars":62,"textLines":1,"bbox":[64,91,1080,34]}
+{"kind":"textbox","id":"sh/lwne5svi","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1182,43,35,26]}
+{"kind":"shape","id":"sh/a5cfqdwv","slide":7,"bbox":[52,162,571,396]}
+{"kind":"shape","id":"sh/c7uxsne1","slide":7,"bbox":[657,162,571,396]}
+{"kind":"textbox","id":"sh/u1wf2hwf","slide":7,"text":"Locations","textPreview":"Locations","textChars":9,"textLines":1,"bbox":[55,585,220,28]}
+{"kind":"textbox","id":"sh/v25gbmd0","slide":7,"text":"Buildings, floors, rooms and operational areas.","textPreview":"Buildings, floors, rooms and operational areas.","textChars":47,"textLines":1,"bbox":[55,615,500,32]}
+{"kind":"textbox","id":"sh/rexw7yx8","slide":7,"text":"Maintenance categories","textPreview":"Maintenance categories","textChars":22,"textLines":1,"bbox":[660,585,300,28]}
+{"kind":"textbox","id":"sh/6dovetgn","slide":7,"text":"Standard work types with default priority and colour.","textPreview":"Standard work types with default priority and colour.","textChars":53,"textLines":1,"bbox":[660,615,500,32]}
+{"kind":"textbox","id":"sh/t0fe9ofe","slide":7,"text":"HM TaskManager · Simple User Guide","textPreview":"HM TaskManager · Simple User Guide","textChars":34,"textLines":1,"bbox":[64,685,400,16]}
+{"kind":"image","id":"im/m5s7ex47","slide":7,"name":"","geometry":"roundRect","bbox":[55,165,565,390]}
+{"kind":"image","id":"im/87upgnmd","slide":7,"name":"","geometry":"roundRect","bbox":[660,165,565,390]}
+{"kind":"notes","id":"nt/rp5gxc","slide":7,"text":""}
+{"kind":"slide","id":"sl/7t6y2e","slide":8,"title":"Assets","textShapes":7}
+{"kind":"textbox","id":"sh/jid0fudk","slide":8,"text":"Assets","textPreview":"Assets","textChars":6,"textLines":1,"bbox":[64,38,1040,48]}
+{"kind":"textbox","id":"sh/kjmhofu5","slide":8,"text":"Assets connect maintenance history to hotel equipment.","textPreview":"Assets connect maintenance history to hotel equipment.","textChars":54,"textLines":1,"bbox":[64,91,1080,34]}
+{"kind":"textbox","id":"sh/lkvihkva","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1182,43,35,26]}
+{"kind":"shape","id":"sh/6l4zqpcv","slide":8,"bbox":[52,152,751,486]}
+{"kind":"textbox","id":"sh/8n6hszu1","slide":8,"text":"Asset records include","textPreview":"Asset records include","textChars":21,"textLines":1,"bbox":[850,180,320,30]}
+{"kind":"textbox","id":"sh/tofil4vm","slide":8,"text":"Asset tag and name\n\nHotel location\n\nMaintenance category\n\nManufacturer and model\n\nOperational status","textPreview":"Asset tag and name |  | Hotel location |  | Maintenance category |  | Manufacturer and model |  | Operational status","textChars":100,"textLines":9,"bbox":[850,235,300,275]}
+{"kind":"shape","id":"sh/upoju9c7","slide":8,"bbox":[850,535,320,66]}
+{"kind":"textbox","id":"sh/vqx0neds","slide":8,"text":"Linking work orders to assets helps identify repeat failures.","textPreview":"Linking work orders to assets helps identify repeat failures.","textChars":61,"textLines":1,"bbox":[870,546,280,44]}
+{"kind":"textbox","id":"sh/ridwzq1c","slide":8,"text":"HM TaskManager · Simple User Guide","textPreview":"HM TaskManager · Simple User Guide","textChars":34,"textLines":1,"bbox":[64,685,400,16]}
+{"kind":"image","id":"im/id4byx83","slide":8,"name":"","geometry":"roundRect","bbox":[55,155,745,480]}
+{"kind":"notes","id":"nt/7t6y2e","slide":8,"text":""}
+{"kind":"slide","id":"sl/d7a69d","slide":9,"title":"Daily operating routine","textShapes":18}
+{"kind":"textbox","id":"sh/bu5cvyxk","slide":9,"text":"Daily operating routine","textPreview":"Daily operating routine","textChars":23,"textLines":1,"bbox":[70,55,750,52]}
+{"kind":"textbox","id":"sh/cvedo3e5","slide":9,"text":"A simple sequence for managers and technicians","textPreview":"A simple sequence for managers and technicians","textChars":46,"textLines":1,"bbox":[70,112,650,30]}
+{"kind":"textbox","id":"sh/xw7ux8fq","slide":9,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[90,200,38,38]}
+{"kind":"textbox","id":"sh/yxgvqdwb","slide":9,"text":"Review the dashboard","textPreview":"Review the dashboard","textChars":20,"textLines":1,"bbox":[144,200,446,30]}
+{"kind":"textbox","id":"sh/zypczixw","slide":9,"text":"Check backlog, overdue work and the management conclusion.","textPreview":"Check backlog, overdue work and the management conclusion.","textChars":58,"textLines":1,"bbox":[144,233,446,55]}
+{"kind":"textbox","id":"sh/kzydsne1","slide":9,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[670,200,38,38]}
+{"kind":"textbox","id":"sh/l07u18fm","slide":9,"text":"Open Work Orders","textPreview":"Open Work Orders","textChars":16,"textLines":1,"bbox":[724,200,446,30]}
+{"kind":"textbox","id":"sh/mlgvudw7","slide":9,"text":"Create new requests and confirm location, dates and task scope.","textPreview":"Create new requests and confirm location, dates and task scope.","textChars":63,"textLines":1,"bbox":[724,233,446,55]}
+{"kind":"textbox","id":"sh/7mpc3ixs","slide":9,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[90,355,38,38]}
+{"kind":"textbox","id":"sh/32t4vul0","slide":9,"text":"Assign and start","textPreview":"Assign and start","textChars":16,"textLines":1,"bbox":[144,355,446,30]}
+{"kind":"textbox","id":"sh/i1k329kf","slide":9,"text":"Select the worker, keep at least one task open and move work to IN PROGRESS.","textPreview":"Select the worker, keep at least one task open and move work to IN PROGRESS.","textChars":76,"textLines":1,"bbox":[144,388,446,55]}
+{"kind":"textbox","id":"sh/54bmx436","slide":9,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[670,355,38,38]}
+{"kind":"textbox","id":"sh/432l4z2l","slide":9,"text":"Update tasks","textPreview":"Update tasks","textChars":12,"textLines":1,"bbox":[724,355,446,30]}
+{"kind":"textbox","id":"sh/ve94rul4","slide":9,"text":"Record progress from the list or by clicking the card in Work Board.","textPreview":"Record progress from the list or by clicking the card in Work Board.","textChars":68,"textLines":1,"bbox":[724,388,446,55]}
+{"kind":"textbox","id":"sh/ud03ypkj","slide":9,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[380,515,38,38]}
+{"kind":"textbox","id":"sh/h0rmt43a","slide":9,"text":"Complete the order","textPreview":"Complete the order","textChars":18,"textLines":1,"bbox":[434,515,466,30]}
+{"kind":"textbox","id":"sh/wzil0z2p","slide":9,"text":"Complete every task, add the completion comment and close the work order.","textPreview":"Complete every task, add the completion comment and close the work order.","textChars":73,"textLines":1,"bbox":[434,548,466,55]}
+{"kind":"textbox","id":"sh/fud43y18","slide":9,"text":"HM TaskManager","textPreview":"HM TaskManager","textChars":14,"textLines":1,"bbox":[70,675,250,18]}
+{"kind":"notes","id":"nt/d7a69d","slide":9,"text":""}

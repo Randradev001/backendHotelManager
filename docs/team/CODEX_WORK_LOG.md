@@ -1,5 +1,98 @@
 # Log de Trabajo - OpenAI Codex
 
+### 2026-08-19 - Canadian email-based login
+
+* **Authentication:** Replaced RUT lookup with normalized, case-insensitive `UsuCorreo` lookup while preserving password migration, sessions, roles, permissions and company isolation.
+* **Multi-hotel:** One email can resolve the same user's assigned hotels and continues through the existing protected hotel selection step.
+* **Frontend:** Replaced the RUT control with an English email field, Canadian placeholder, email validation and appropriate icon/autocomplete semantics.
+
+### 2026-08-18 - Management Intelligence home dashboard
+
+* **Business intelligence:** Expanded the hotel-scoped dashboard with backlog, overdue exposure, on-time completion, average resolution time, six-month demand, lifecycle, priorities, workload, locations, assets and category concentration.
+* **Conclusions:** Every analytical block includes an English data-driven management conclusion, including risk and recommended focus.
+* **Navigation:** The BI dashboard is now the authenticated landing page and the main Dashboard menu destination.
+* **Security:** All aggregates continue to use session `GECODEMP`; the optional user filter cannot change company context.
+
+### 2026-08-12 - HM TaskManager visual identity and hotel login
+
+* **Branding:** Replaced the APERP mark with a restrained HM TaskManager SVG combining an `HM` monogram and task checkmark.
+* **Login:** Added a generated hospitality image featuring a contemporary Winnipeg hotel operation and rebuilt the login hero with English hotel-focused messaging.
+* **Consistency:** Updated logo accessibility labels and the dashboard footer brand.
+* **Login copy:** Removed the remaining visible APERP references from the login and browser metadata; authentication now uses English HM TaskManager and Hotel terminology.
+
+### 2026-08-12 - Status workflow from Work Order list
+
+* **Frontend:** Added a status-change action to each eligible Work Order row.
+* **Workflow:** The modal displays all six statuses, identifies the current one, disables invalid transitions, and applies the same required assignment, resolution, hold, completion, and cancellation inputs used by the Work Board.
+* **Integration:** Successful changes refresh both the Work Order list and Operations Dashboard while using the existing audited, company-scoped transition endpoint.
+* **Verification:** Frontend production/PWA build passed.
+
+### 2026-08-12 - Work Order dates and overdue alerts
+
+* **Backend:** Work order create/update now persists `StartedAt`, `DueAt`, and `CompletedAt`, rejecting invalid ranges.
+* **Frontend:** The CRUD captures start and expected completion, displays actual completion, and includes the schedule in the grid and record preview.
+* **Work Board:** Cards show From/To dates; open orders past `DueAt` receive a red background, border, due date, and `OVERDUE` badge.
+* **Correction:** Fixed the date declarations so they belong to `saveWorkOrder` rather than `saveAsset`; the misplaced declarations caused a `ReferenceError` and generic HTTP 500 while editing.
+* **Verification:** Backend syntax check and frontend production/PWA build passed.
+
+### 2026-08-12 - HM Work Board workflow
+
+* **Frontend:** Replaced the Work Board placeholder with six drag-and-drop lanes: New, Assigned, In Progress, On Hold, Completed and Cancelled. Dropping a card opens the required contextual form.
+* **Workflow:** Assignment requires an active hotel user; In Progress requires the planned resolution; On Hold, Completed and Cancelled require their respective reason/comment. Invalid transitions are rejected.
+* **Backend:** Added a transactional transition endpoint scoped by session `GECODEMP`. Each accepted movement updates operational dates and appends the previous/new state plus note to `HMWORKORDEREVENT`.
+* **Verification:** Backend syntax checks and frontend production/PWA build passed.
+
+### 2026-08-12 - HM Operations Dashboard
+
+* **Objective:** Add a professional, data-driven operations dashboard for each active hotel.
+* **Backend:** Added the authorized `GET /backendDocker/hotel-manager/dashboard` aggregate, scoped to session `GECODEMP`, for work order state/priority, attention queue, active locations and active assets.
+* **Frontend:** Replaced the dashboard placeholder with operational metrics, priority and status breakdowns, attention list, deep links and automatically generated quick conclusions.
+* **Verification:** Backend syntax checks, a live `GECODEMP 6002` dashboard read, and frontend production/PWA build all passed.
+
+### 2026-08-12 - HM professional list experience
+
+* **Assets and Work Orders:** Reworked both registers to match the Locations master pattern: search plus status filter, icon-led primary cell, compact chips for status/priority, icon action buttons and consistent gradient headers/modal forms.
+* **Verification:** Frontend production build and PWA generation completed successfully.
+
+### 2026-08-12 - HM test operational data
+
+* **Objective:** Make the new Andres Andrade test hotel immediately useful for the first HM CRUD validation.
+* **Execution:** Applied `database/20260812_hm_test_data_6002.sql` to `BDAPERP`. It adds Main Lobby, Room 101 and Mechanical Room; HVAC, Plumbing and Electrical categories; HVAC-01; and an assigned sample work order with its audit event.
+
+### 2026-08-12 - First working HM CRUD: Locations
+
+* **Objective:** Replace the HM Locations placeholder with an operational, hotel-isolated registration screen.
+* **Backend:** Added `GET` and `POST /backendDocker/hotel-manager/locations`, both protected by the existing session and program permission `40/1/3`. `GECODEMP` always comes from `req.context.empCod`; parent locations are validated in the same hotel.
+* **Frontend:** Added the English Locations workspace: load current locations and create building, floor, room, area, or equipment-room records. It is routed from the authorized HM menu.
+* **Verification:** Node syntax checks passed, `npm run build` passed, and an integration read for test hotel `GECODEMP 6002` returned zero locations as expected for a new hotel.
+
+### 2026-08-12 - HM test hotel and user for Andres Andrade Vargas
+
+* **Objective:** Provision a dedicated, active test hotel and a minimally privileged account for RUT `17.526.007-2`.
+* **Artifact:** Added `database/20260812_hm_test_hotel_andres_andrade.sql`. It creates `GECODEMP 6002` (`HM Test Hotel - Andres Andrade`), user `AANDRADE`, and grants only system 40 / Maintenance programs.
+* **Security:** Existing sessions for this account are revoked on rerun. The test account is not granted the global `ADMINFULL` role or unrelated APERP programs.
+* **Execution:** Applied and verified in `BDAPERP`; the active account has five Hotel Manager menu programs for `GECODEMP 6002`.
+
+### 2026-08-12 - HM menu routes available in React
+
+* **Incident:** The new authorized HM menu links led to the React Router default `404 Not Found` because their routes had not yet been registered.
+* **Frontend:** Added a shared English Hotel Manager foundation page and registered `/hotel-manager/dashboard`, `/work-orders`, `/locations`, `/categories` and `/assets`. Each entry shows the active hotel session context and an appropriate module-specific next step.
+* **Verification:** `npm run build` completed successfully, including PWA generation.
+
+### 2026-08-12 - HM menu registration for test user
+
+* **Objective:** Register the initial Hotel Manager menu without changing permissions for any other user.
+* **Artifact:** Added `database/20260812_hm_menu_test_user.sql`. It creates system `40 - Hotel Manager`, module `1 - Maintenance`, and the initial Dashboard, Work Orders, Locations, Maintenance Categories and Assets menu programs.
+* **Access scope:** The script resolves active accounts by RUT `14.332.241-6` and grants the hierarchy in `ASIGSIST`, `ASIG` and `ASIGPROG` only for those hotel companies. It is safe to run again.
+* **Execution:** Applied and verified in `BDAPERP`; `MANDRADE` now has the five HM programs under system 40 for `GECODEMP` 100 and 6001.
+
+### 2026-08-12 - HM Hotel Manager foundation
+
+* **Objective:** Establish the reviewable relational foundation for the new hotel maintenance product without changing existing APERP/GeneXus behaviour or executing database changes.
+* **Tenant model:** Each existing `g_emp` company is one hotel. Every HM table, primary key and internal foreign key includes `GECODEMP`, which is obtained only from the authenticated session context.
+* **Artifacts:** Added `database/20260812_hm_foundation.sql` with idempotent DDL for locations, categories, assets, work orders, assignments, audit events, comments and attachment metadata; added `docs/architecture/hm-hotel-manager-foundation.md` with lifecycle, API boundary and unresolved design decisions.
+* **Security:** The DDL deliberately retains legacy `UsuLogin` as the audit actor while a future email-login migration can change the credential lookup without breaking permissions or historical records.
+
 ### 2026-08-04 - Migración limitada de maestros de artículos
 
 * **Alcance:** Se migraron exclusivamente `bod.Fam` y `bod.FamTipo`, únicos objetos indicados con estado `Ready`; el resto de `Maestros_Artic` se dejó fuera.
@@ -125,3 +218,43 @@ Este log registra todas las tareas, análisis, endpoints y desarrollos realizado
   * Espacio de trabajo preparado para que Codex consigne los avances de backend o frontend.
 
 ---
+### 2026-08-19 - HM TaskManager executive presentation
+
+* **Objective:** Create an English executive presentation for Canadian hotel leadership covering multi-hotel management, company security, operational flow, Business Intelligence, and conclusions.
+* **Artifact:** `outputs/hm-taskmanager-executive-presentation.pptx`.
+* **Evidence:** Used the stored HM TaskManager login visual and seeded HM test data names from the front end and migration scripts; presentation render completed and `slides_test.py` reported no overflow.
+### 2026-08-19 - HM TaskManager deck updated with real UI captures
+
+* **Objective:** Replace interface-faithful panels with authenticated HM TaskManager screenshots.
+* **Artifact:** Updated `outputs/hm-taskmanager-executive-presentation.pptx`; real captures are in `outputs/real-ui-captures/`.
+* **Verification:** Captured Login, Dashboard, Work Orders, Work Board, Locations, Maintenance Categories, and Assets using the local frontend/backend and the seeded HM test user. Rendered slides and passed `slides_test.py` with no overflow.
+
+### 2026-09-04 - Standalone Hotel Manager database
+
+* **Objective:** Separate Hotel Manager from `BDAPERP` while retaining the compatible multi-company security layer.
+* **Implementation:** Created and executed `database/20260904_hotel_manager_standalone.sql`. The installer provisions `HotelManagerDB`, security catalogs and assignments, credentials/sessions, the eight Hotel Manager operational tables, tenant constraints, six menu entries, hotel `6002`, administrator `AANDRADE`, and sample maintenance records.
+* **Canadian access:** Authentication and security views now use Hotel Manager-specific views; email is required and legacy RUT fields are optional in user maintenance.
+* **Isolation:** The backend connection now targets `HotelManagerDB`; `BDAPERP` was not modified or removed.
+* **Verification:** Installer rerun was idempotent; email login returned hotel `6002`, role `ADMINFULL` and six menu items. CRUD reads returned 3 locations, 3 categories, 1 asset and 1 work order; dashboard aggregation succeeded. `npm test` passed 14/14 tests and `git diff --check` passed.
+
+### 2026-09-04 - Work order task collection
+
+* **Objective:** Add a dynamic task list to work orders with status and optional responsible person, including later management from the work-order register.
+* **Implementation:** Added tenant-scoped level-two table `HMWORKORDERTASK`, collection persistence in create/edit, a dedicated bulk update endpoint, and a task-management action/dialog in the frontend list.
+* **Verification:** Applied the migration to `HotelManagerDB`; persisted and read one unassigned and one assigned task for the sample order. Backend tests passed 14/14 and the frontend production/PWA build completed successfully.
+* **Completion rule:** The backend now rejects every attempt to complete a work order while a child task remains `TODO` or `IN_PROGRESS`; the work-order register also disables that transition and explains why.
+* **Startup correction:** Restored the missing `removeAsset` controller export that caused Express to receive an undefined callback for `DELETE /assets/:assetId`. Both the Hotel Manager router and root router now load successfully.
+* **Integrated transition:** Both Change Status and Work Board dialogs now display their child tasks and allow status/responsible edits. The backend persists those edits atomically with the header transition and then evaluates the completion rule.
+* **Board task summary:** Work Board cards now open task management on click and display pending/completed counts plus a readiness message indicating how many tasks remain before the order can be completed. Frontend/PWA production build passed.
+* **Multi-hotel operations:** Added permission-scoped hotel access, the Work Board hotel filter, cross-hotel mutation validation, compact card metadata, and hierarchical tasks through `ParentTaskId`. Loaded six Manitoba hotels and 27 real-world sample orders: 23 Colonial room renovations, one Clarion carpet project, and three Courtis projects. Verified seven visible hotels including the administrator's home hotel, 28 total orders including the original sample, and preservation of all 72 furniture task/tree rows after editing.
+* **Administrator visibility:** `ADMINFULL` now receives all hotels and all work orders by default, with a hotel selector in both Work Board and Work Orders. The selector is hidden for regular users, whose query remains session-hotel scoped. Backend authorization, routers, 14 tests, and the production PWA build passed.
+* **Compact Work Board cards:** Reduced card spacing and typography, removed the large coloured task-summary panel, and moved progress beside the work-order number using the compact format `pending/total · percentage`. Location/assignee and From/To now each share one line. Production PWA build passed.
+* **Lane-coloured cards:** Work Board cards now use a subtle translucent background, border, and hover shadow derived from their lane colour. Overdue cards retain the stronger red warning treatment. Production PWA build passed.
+* **Demo workforce:** Added and executed the repeatable worker seed for Remigio Andres Andrade, Erwin, Greg, Ron Lemuel Cruz, Ronwell Cruz, and Jose. Six active `TECHNICIAN` users now exist in each of the seven demo hotels (42 hotel-user records) with role-based Dashboard, Work Orders, and Work Board access.
+* **Task/header state rules:** `IN_PROGRESS` now requires at least one child task in `TODO` or `IN_PROGRESS` when tasks exist. `COMPLETED` requires every child task to be exactly `COMPLETED`; cancelled tasks no longer satisfy completion. Both scenarios were verified against SQL Server, backend tests passed 14/14, and the PWA build passed.
+
+### 2026-09-04 - Simple user guide presentation
+
+* **Objective:** Create a concise English PowerPoint explaining the primary HM TaskManager screens for managers and maintenance workers.
+* **Artifact:** `outputs/hm-taskmanager-simple-user-guide-final.pptx` with nine slides covering secure access, the management dashboard, work orders, task/status rules, Work Board, locations, categories, assets, and the daily operating routine.
+* **Evidence:** Navigated the local application and reused authenticated real-screen captures. The final deck passed presentation integrity/layout validation and `slides_test.py` reported no overflow after visual review of every slide.

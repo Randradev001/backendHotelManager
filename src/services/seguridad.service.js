@@ -17,17 +17,17 @@ class SecurityError extends Error {
 }
 
 const normalizeLogin = (value) => String(value || '').trim().toUpperCase();
+const normalizeEmail = (value) => String(value || '').trim().toLowerCase();
 const clean = (value) => (typeof value === 'string' ? value.trim() : value);
 
+// Retained for GeneXus-compatible user maintenance; authentication uses email.
 const calculateRutDv = (rutNumber) => {
   let sum = 0;
   let multiplier = 2;
-
   for (const digit of String(rutNumber).split('').reverse()) {
     sum += Number(digit) * multiplier;
     multiplier = multiplier === 7 ? 2 : multiplier + 1;
   }
-
   const result = 11 - (sum % 11);
   if (result === 11) return '0';
   if (result === 10) return 'K';
@@ -37,14 +37,10 @@ const calculateRutDv = (rutNumber) => {
 const parseRut = (value) => {
   const normalized = String(value || '').trim().toUpperCase().replace(/\./g, '').replace(/\s/g, '');
   const match = normalized.match(/^(\d{1,9})-?([0-9K])$/);
-  if (!match) throw new SecurityError(400, 'VALIDATION_ERROR', 'Ingrese un RUT valido con digito verificador.');
-
+  if (!match) throw new SecurityError(400, 'VALIDATION_ERROR', 'Enter a valid RUT with its verification digit.');
   const rutNumber = Number(match[1]);
   const rutDv = match[2];
-  if (!rutNumber || calculateRutDv(rutNumber) !== rutDv) {
-    throw new SecurityError(400, 'VALIDATION_ERROR', 'El RUT ingresado no es valido.');
-  }
-
+  if (!rutNumber || calculateRutDv(rutNumber) !== rutDv) throw new SecurityError(400, 'VALIDATION_ERROR', 'The RUT is not valid.');
   return { rutNumber, rutDv };
 };
 
@@ -68,16 +64,16 @@ const getUsers = async (pool, login, empCod) => {
   const result = await request.query(`
       SELECT U.GECODEMP, U.UsuLogin, U.Usunom, U.UsuClave, U.UsuCorreo, U.UsuCargo,
              U.UsuNseg, U.UsuEstado, U.UsuPerfil, U.UsuTipo, RTRIM(E.EmpNom) AS EmpNom
-      FROM VW_APERP_SEG_USUARIOS U
-      INNER JOIN VW_APERP_SEG_EMPRESAS E ON E.GECODEMP=U.GECODEMP
+      FROM VW_HM_SEG_USUARIOS U
+      INNER JOIN VW_HM_SEG_HOTELES E ON E.GECODEMP=U.GECODEMP
       WHERE RTRIM(U.UsuLogin) = @login
         ${whereCompany}
     `);
   return result.recordset;
 };
 
-const getUsersByRut = async (pool, rutNumber, empCod) => {
-  const request = pool.request().input('rutNumber', sql.Decimal(9, 0), rutNumber);
+const getUsersByEmail = async (pool, email, empCod) => {
+  const request = pool.request().input('email', sql.VarChar(80), email);
   const whereCompany = empCod ? 'AND U.GECODEMP=@empCod' : '';
   if (empCod) request.input('empCod', sql.Decimal(10, 0), empCod);
 
@@ -85,9 +81,9 @@ const getUsersByRut = async (pool, rutNumber, empCod) => {
     SELECT U.GECODEMP, U.UsuLogin, U.Usunom, U.UsuClave, U.UsuRut, U.UsuDV,
            U.UsuCorreo, U.UsuCargo, U.UsuNseg, U.UsuEstado, U.UsuPerfil, U.UsuTipo,
            RTRIM(E.EmpNom) AS EmpNom
-    FROM VW_APERP_SEG_USUARIOS U
-    INNER JOIN VW_APERP_SEG_EMPRESAS E ON E.GECODEMP=U.GECODEMP
-    WHERE U.UsuRut=@rutNumber
+    FROM VW_HM_SEG_USUARIOS U
+    INNER JOIN VW_HM_SEG_HOTELES E ON E.GECODEMP=U.GECODEMP
+    WHERE LOWER(LTRIM(RTRIM(U.UsuCorreo)))=@email
       ${whereCompany}
   `);
   return result.recordset;
@@ -220,29 +216,36 @@ const createSession = async (pool, login, empCod, remember) => {
   return { token, expiresAt };
 };
 
-const login = async ({ rut, password, empCod, remember = false }) => {
-  const { rutNumber } = parseRut(rut);
-  if (!password) throw new SecurityError(400, 'VALIDATION_ERROR', 'RUT y clave son obligatorios.');
+const login = async ({ email, password, empCod, remember = false }) => {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail || normalizedEmail.length > 80 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+    throw new SecurityError(400, 'VALIDATION_ERROR', 'Enter a valid email address.');
+  }
+  if (!password) throw new SecurityError(400, 'VALIDATION_ERROR', 'Email and password are required.');
 
   const pool = await getPool();
-  const candidates = await getUsersByRut(pool, rutNumber, empCod ? Number(empCod) : null);
+  const candidates = await getUsersByEmail(pool, normalizedEmail, empCod ? Number(empCod) : null);
   const validUsers = [];
   for (const candidate of candidates) {
     if (candidate.UsuEstado === 1 && await verifyCredentials(pool, candidate, String(password))) validUsers.push(candidate);
   }
   if (!validUsers.length) {
-    throw new SecurityError(401, 'INVALID_CREDENTIALS', 'Usuario o clave incorrectos.');
+    throw new SecurityError(401, 'INVALID_CREDENTIALS', 'Incorrect email or password.');
+  }
+  const identities = new Set(validUsers.map((user) => normalizeLogin(user.UsuLogin)));
+  if (identities.size > 1) {
+    throw new SecurityError(409, 'EMAIL_NOT_UNIQUE', 'This email is assigned to more than one user. Contact your system administrator.');
   }
 
   const companies = await getCompanies(pool, validUsers);
-  if (!companies.length) throw new SecurityError(403, 'NO_COMPANY', 'El usuario no tiene empresas asignadas.');
+  if (!companies.length) throw new SecurityError(403, 'NO_COMPANY', 'This user has no assigned hotels.');
   if (!empCod && companies.length > 1) {
     return { requiresCompany: true, companies, user: mapUser(validUsers[0]) };
   }
 
   const selected = Number(empCod || companies[0].empCod);
   const company = companies.find((item) => item.empCod === selected);
-  if (!company) throw new SecurityError(403, 'INVALID_COMPANY', 'La empresa no esta asignada al usuario.');
+  if (!company) throw new SecurityError(403, 'INVALID_COMPANY', 'The selected hotel is not assigned to this user.');
 
   const user = validUsers.find((item) => Number(item.GECODEMP) === selected);
   const loginName = normalizeLogin(user.UsuLogin);
@@ -273,9 +276,9 @@ const getSession = async (token) => {
              U.Usunom, U.UsuCorreo, U.UsuCargo, U.UsuNseg,
              U.UsuEstado, U.UsuPerfil, U.UsuTipo, E.EmpNom
       FROM SEGSESION S
-      INNER JOIN VW_APERP_SEG_USUARIOS U
+      INNER JOIN VW_HM_SEG_USUARIOS U
         ON U.GECODEMP=S.GECODEMP AND U.UsuLogin=S.UsuLogin
-      LEFT JOIN VW_APERP_SEG_EMPRESAS E ON E.GECODEMP=S.GECODEMP
+      LEFT JOIN VW_HM_SEG_HOTELES E ON E.GECODEMP=S.GECODEMP
       WHERE S.TokenHash = @tokenHash AND S.Revocada = 0 AND S.FechaExpiracion > SYSUTCDATETIME()
     `);
   const row = result.recordset[0];

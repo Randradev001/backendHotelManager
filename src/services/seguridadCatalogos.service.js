@@ -24,12 +24,13 @@ const catalogs = {
       GECODEMP: number({ serverValue: 'contextCompany' }),
       UsuLogin: text(10, { required: true, upper: true }),
       UsuClave: text(10, { writeOnly: true, password: true }),
-      UsuRut: number({ required: true }),
-      UsuDV: text(1, { required: true, upper: true }),
+      // Canadian users authenticate by email; RUT remains optional for legacy compatibility.
+      UsuRut: number(),
+      UsuDV: text(1, { upper: true }),
       Usunom: text(35, { required: true }),
       UsuCargo: text(30, { defaultValue: ' ' }),
       usucrea: text(10, { serverValueOnInsert: 'contextLogin' }),
-      UsuCorreo: text(80, { defaultValue: ' ' }),
+      UsuCorreo: text(80, { required: true }),
       UsuEstado: number({ required: true, defaultValue: 1 }),
       UsuPerfil: text(10, { defaultValue: ' ' }),
       UsuTipo: number({ required: true, defaultValue: 0 }),
@@ -348,7 +349,7 @@ const listUsers = async (query, context) => {
     SELECT TOP (${limit})
       U.GECODEMP, U.UsuLogin, U.UsuRut, U.UsuDV, U.Usunom, U.UsuCargo,
       U.usucrea, U.UsuCorreo, U.UsuEstado, U.UsuPerfil, U.UsuTipo, U.usuFecCrea
-    FROM VW_APERP_SEG_USUARIOS U
+    FROM VW_HM_SEG_USUARIOS U
     WHERE U.GECODEMP=@contextCompany ${search}
     ORDER BY U.UsuLogin
   `);
@@ -445,7 +446,7 @@ const insertUser = async (payload, context) => {
   if (!isFilled(values.UsuClave) || String(values.UsuClave).length < 8 || String(values.UsuClave).length > 10) {
     throw new SecurityError(400, 'VALIDATION_ERROR', 'UsuClave debe tener entre 8 y 10 caracteres durante la convivencia con GeneXus.');
   }
-  parseRut(`${values.UsuRut}-${values.UsuDV}`);
+  if (isFilled(values.UsuRut) || isFilled(values.UsuDV)) parseRut(`${values.UsuRut}-${values.UsuDV}`);
 
   const pool = await getPool();
   const transaction = new sql.Transaction(pool);
@@ -455,13 +456,14 @@ const insertUser = async (payload, context) => {
       .input('empCod', sql.Decimal(10, 0), context.empCod)
       .input('login', sql.VarChar(10), values.UsuLogin)
       .input('rut', sql.Int, values.UsuRut)
-      .query('SELECT TOP (1) 1 AS found FROM USUARIOS WHERE GECODEMP=@empCod AND (RTRIM(UsuLogin)=@login OR UsuRut=@rut)');
+      .input('email', sql.VarChar(80), values.UsuCorreo)
+      .query('SELECT TOP (1) 1 AS found FROM USUARIOS WHERE GECODEMP=@empCod AND (RTRIM(UsuLogin)=@login OR (@rut IS NOT NULL AND UsuRut=@rut) OR LOWER(RTRIM(UsuCorreo))=LOWER(@email))');
     if (duplicate.recordset.length) {
-      throw new SecurityError(409, 'DUPLICATE_USER', 'Ya existe un usuario con ese login o RUT.');
+      throw new SecurityError(409, 'DUPLICATE_USER', 'A user with that login, email, or legacy RUT already exists.');
     }
 
     const company = await transaction.request().input('empCod', sql.Decimal(10, 0), context.empCod)
-      .query('SELECT TOP (1) 1 AS found FROM VW_APERP_SEG_EMPRESAS WHERE GECODEMP=@empCod');
+      .query('SELECT TOP (1) 1 AS found FROM VW_HM_SEG_HOTELES WHERE GECODEMP=@empCod');
     if (!company.recordset.length) throw new SecurityError(400, 'INVALID_COMPANY', 'La empresa de la sesion no existe en g_emp.');
 
     await transaction.request()
@@ -555,7 +557,7 @@ const updateUser = async (payload, context) => {
       ? validateValue(name, catalogs.usuarios.fields[name], payload[name])
       : row[name];
     const values = Object.fromEntries(editable.map((name) => [name, value(name)]));
-    parseRut(`${values.UsuRut}-${String(values.UsuDV || '').trim()}`);
+    if (isFilled(values.UsuRut) || isFilled(values.UsuDV)) parseRut(`${values.UsuRut}-${String(values.UsuDV || '').trim()}`);
 
     const duplicateRut = await transaction.request()
       .input('empCod', sql.Decimal(10, 0), context.empCod)

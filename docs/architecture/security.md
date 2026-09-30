@@ -22,11 +22,13 @@ La autorizacion sigue la jerarquia original de CONEX:
 
 ## Autenticacion
 
-El endpoint `POST /backendDocker/seguridad/login` recibe y valida el RUT completo de la persona. Busca la identidad en `USUARIOS`, obtiene sus empresas habilitadas desde `SEGUSUEMP` y presenta el nombre de `DEFEMP`. El `UsuLogin` se conserva como identidad interna para credenciales, auditoria, roles y permisos. Si todavia no existe una credencial moderna, compara una sola vez con `UsuClave`, tal como hacia `VeriUsu`, y crea un hash `scrypt` global en `SEGUSUCRED`.
+El endpoint `POST /backendDocker/seguridad/login` recibe y normaliza el correo de la persona. Busca coincidencia case-insensitive en `USUARIOS.UsuCorreo`, obtiene sus empresas habilitadas y presenta el hotel correspondiente. El `UsuLogin` se conserva como identidad interna para credenciales, auditoria, roles y permisos. Si todavia no existe una credencial moderna, compara una sola vez con `UsuClave`, tal como hacia `VeriUsu`, y crea un hash `scrypt` global en `SEGUSUCRED`.
+
+El correo debe representar una sola identidad interna (`UsuLogin`), aunque esa identidad puede existir en varios hoteles. Si una direccion corresponde a mas de un `UsuLogin`, el acceso se rechaza para evitar ambiguedad y requiere correccion administrativa.
 
 La sesion es un token aleatorio en cookie `HttpOnly`. SQL Server guarda solamente su SHA-256 en `SEGSESION`. La empresa de trabajo queda dentro de la sesion y el middleware la publica como `req.context.empCod`; las pantallas no deben pedirla ni enviarla.
 
-Si el usuario tiene una sola empresa, el login la selecciona automaticamente. Si tiene varias, el backend devuelve las empresas permitidas para que el formulario solicite una seleccion antes de crear la sesion.
+Si el usuario tiene un solo hotel, el login lo selecciona automaticamente. Si tiene varios, el backend devuelve los hoteles permitidos para que el formulario solicite una seleccion antes de crear la sesion.
 
 ## Procedimientos GX identificados
 

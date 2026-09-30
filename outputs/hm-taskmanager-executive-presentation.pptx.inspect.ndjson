@@ -1,0 +1,104 @@
+{"kind":"deck","id":"pr/a7nj39","name":"Deck"}
+{"kind":"layout","layoutId":"15f54bfa-842c-4146-8578-c1e90647cc31","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"3b89a0a8-9e4c-4e2b-ba30-b95de528b6d8","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/6z8kgd","slide":1,"title":"HM TASKMANAGER","textShapes":5}
+{"kind":"textbox","id":"sh/ofaxwnal","slide":1,"text":"HM TASKMANAGER","textPreview":"HM TASKMANAGER","textChars":14,"textLines":1,"bbox":[72,70,520,30]}
+{"kind":"textbox","id":"sh/ne1gni90","slide":1,"text":"One operating view\nfor every hotel","textPreview":"One operating view | for every hotel","textChars":34,"textLines":2,"bbox":[72,130,620,150]}
+{"kind":"textbox","id":"sh/mdsfudsf","slide":1,"text":"Maintenance operations, company security, and management intelligence in one controlled workflow.","textPreview":"Maintenance operations, company security, and management intelligence in one controlled workflow.","textChars":97,"textLines":1,"bbox":[72,320,520,80]}
+{"kind":"shape","id":"sh/1czyl8ra","slide":1,"bbox":[72,470,150,28]}
+{"kind":"textbox","id":"sh/0bqxs3ap","slide":1,"text":"Executive briefing","textPreview":"Executive briefing","textChars":18,"textLines":1,"bbox":[72,475,150,16]}
+{"kind":"textbox","id":"sh/zahwjy94","slide":1,"text":"Prepared for Canadian hotel leadership","textPreview":"Prepared for Canadian hotel leadership","textChars":38,"textLines":1,"bbox":[72,520,430,28]}
+{"kind":"image","id":"im/bil0z65c","slide":1,"name":"","geometry":"roundRect","bbox":[790,64,390,560]}
+{"kind":"notes","id":"nt/6z8kgd","slide":1,"text":""}
+{"kind":"slide","id":"sl/tqj5uy","slide":2,"title":"THE OPERATING CASE","textShapes":14}
+{"kind":"textbox","id":"sh/yhg32lsn","slide":2,"text":"THE OPERATING CASE","textPreview":"THE OPERATING CASE","textChars":18,"textLines":1,"bbox":[72,38,520,22]}
+{"kind":"textbox","id":"sh/lkr2xgbe","slide":2,"text":"A single control plane across a multi-hotel portfolio","textPreview":"A single control plane across a multi-hotel portfolio","textChars":53,"textLines":1,"bbox":[72,72,1120,58]}
+{"kind":"textbox","id":"sh/kjyl4bat","slide":2,"text":"HM TaskManager connects property context, work execution, and management visibility.","textPreview":"HM TaskManager connects property context, work execution, and management visibility.","textChars":84,"textLines":1,"bbox":[72,136,1060,40]}
+{"kind":"shape","id":"sh/7m9kzqtk","slide":2,"bbox":[72,220,330,285]}
+{"kind":"textbox","id":"sh/6l036lsz","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[100,250,70,40]}
+{"kind":"textbox","id":"sh/torm10ba","slide":2,"text":"Hotel context","textPreview":"Hotel context","textChars":13,"textLines":1,"bbox":[100,300,240,34]}
+{"kind":"textbox","id":"sh/8nil8va5","slide":2,"text":"Company, hotel, location, asset","textPreview":"Company, hotel, location, asset","textChars":31,"textLines":1,"bbox":[100,350,240,60]}
+{"kind":"shape","id":"sh/va943atg","slide":2,"bbox":[475,220,330,285]}
+{"kind":"textbox","id":"sh/u903a5sv","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[503,250,70,40]}
+{"kind":"textbox","id":"sh/0zm14vql","slide":2,"text":"Operational flow","textPreview":"Operational flow","textChars":16,"textLines":1,"bbox":[503,300,260,34]}
+{"kind":"textbox","id":"sh/10v2d07q","slide":2,"text":"Request → assign → execute → close","textPreview":"Request → assign → execute → close","textChars":34,"textLines":1,"bbox":[503,350,260,60]}
+{"kind":"shape","id":"sh/ex4j2l8f","slide":2,"bbox":[878,220,330,285]}
+{"kind":"textbox","id":"sh/zyd0bqp0","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[906,250,70,40]}
+{"kind":"textbox","id":"sh/o3618f6h","slide":2,"text":"Management intelligence","textPreview":"Management intelligence","textChars":23,"textLines":1,"bbox":[906,300,260,62]}
+{"kind":"textbox","id":"sh/94f2h072","slide":2,"text":"Status, backlog, completion, asset coverage","textPreview":"Status, backlog, completion, asset coverage","textChars":43,"textLines":1,"bbox":[906,382,260,60]}
+{"kind":"textbox","id":"sh/m1oj65ob","slide":2,"text":"HM TaskManager  |  Executive overview","textPreview":"HM TaskManager  |  Executive overview","textChars":37,"textLines":1,"bbox":[72,684,500,16]}
+{"kind":"textbox","id":"sh/n2xkfapw","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1180,684,28,16]}
+{"kind":"notes","id":"nt/tqj5uy","slide":2,"text":""}
+{"kind":"slide","id":"sl/p8wg7e","slide":3,"title":"LOGIN & COMPANY CONTEXT","textShapes":9}
+{"kind":"textbox","id":"sh/o369ofa1","slide":3,"text":"LOGIN & COMPANY CONTEXT","textPreview":"LOGIN & COMPANY CONTEXT","textChars":23,"textLines":1,"bbox":[72,38,520,22]}
+{"kind":"textbox","id":"sh/32x8fa9g","slide":3,"text":"Security starts before the first work order","textPreview":"Security starts before the first work order","textChars":43,"textLines":1,"bbox":[72,72,1120,58]}
+{"kind":"textbox","id":"sh/21orm5sv","slide":3,"text":"Users authenticate with their identity and select an authorized hotel context.","textPreview":"Users authenticate with their identity and select an authorized hotel context.","textChars":78,"textLines":1,"bbox":[72,136,1060,40]}
+{"kind":"shape","id":"sh/gzmpkfa5","slide":3,"bbox":[700,205,500,350]}
+{"kind":"textbox","id":"sh/fyd8ba9k","slide":3,"text":"What the control means","textPreview":"What the control means","textChars":22,"textLines":1,"bbox":[735,240,380,28]}
+{"kind":"textbox","id":"sh/ex47i5sz","slide":3,"text":"• The session supplies the active company context\n• The screen cannot override the authenticated company\n• Permissions are evaluated from company + user + program assignments\n• The same identity can support more than one hotel, where authorized","textPreview":"• The session supplies the active company context | • The screen cannot override the authenticated company | • Permissions are evaluated ...","textChars":244,"textLines":4,"bbox":[735,292,405,170]}
+{"kind":"shape","id":"sh/lwzqp4ru","slide":3,"bbox":[735,486,190,28]}
+{"kind":"textbox","id":"sh/0vq9wza9","slide":3,"text":"Company-scoped session","textPreview":"Company-scoped session","textChars":22,"textLines":1,"bbox":[735,491,190,16]}
+{"kind":"shape","id":"sh/6p0fihgj","slide":3,"bbox":[940,486,160,28]}
+{"kind":"textbox","id":"sh/7qtwrmh4","slide":3,"text":"Role-aware access","textPreview":"Role-aware access","textChars":17,"textLines":1,"bbox":[940,491,160,16]}
+{"kind":"textbox","id":"sh/sb2xkryp","slide":3,"text":"HM TaskManager  |  Executive overview","textPreview":"HM TaskManager  |  Executive overview","textChars":37,"textLines":1,"bbox":[72,684,500,16]}
+{"kind":"textbox","id":"sh/tcbetwza","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1180,684,28,16]}
+{"kind":"image","id":"im/gfatkzip","slide":3,"name":"","geometry":"roundRect","bbox":[72,205,570,350]}
+{"kind":"notes","id":"nt/p8wg7e","slide":3,"text":""}
+{"kind":"slide","id":"sl/vxc7mz","slide":4,"title":"MULTI-HOTEL GOVERNANCE","textShapes":8}
+{"kind":"textbox","id":"sh/ri947upw","slide":4,"text":"MULTI-HOTEL GOVERNANCE","textPreview":"MULTI-HOTEL GOVERNANCE","textChars":22,"textLines":1,"bbox":[72,38,520,22]}
+{"kind":"textbox","id":"sh/cji50zqh","slide":4,"text":"The portfolio stays connected without mixing hotel data","textPreview":"The portfolio stays connected without mixing hotel data","textChars":55,"textLines":1,"bbox":[72,72,1120,58]}
+{"kind":"textbox","id":"sh/dkrm9472","slide":4,"text":"A tenant-aware backend keeps company boundaries explicit in every request.","textPreview":"A tenant-aware backend keeps company boundaries explicit in every request.","textChars":74,"textLines":1,"bbox":[72,136,1060,40]}
+{"kind":"shape","id":"sh/z694bep8","slide":4,"bbox":[820,210,360,360]}
+{"kind":"textbox","id":"sh/07254jqt","slide":4,"text":"Executive implication","textPreview":"Executive implication","textChars":21,"textLines":1,"bbox":[850,246,290,28]}
+{"kind":"textbox","id":"sh/18bmd47y","slide":4,"text":"A regional or corporate team can standardize the operating model while each hotel sees only its authorized context.","textPreview":"A regional or corporate team can standardize the operating model while each hotel sees only its authorized context.","textChars":115,"textLines":1,"bbox":[850,300,290,120]}
+{"kind":"textbox","id":"sh/m9kn698j","slide":4,"text":"Authenticated EmpCod is the source of truth.","textPreview":"Authenticated EmpCod is the source of truth.","textChars":44,"textLines":1,"bbox":[850,470,290,48]}
+{"kind":"textbox","id":"sh/nat4fep4","slide":4,"text":"HM TaskManager  |  Executive overview","textPreview":"HM TaskManager  |  Executive overview","textChars":37,"textLines":1,"bbox":[72,684,500,16]}
+{"kind":"textbox","id":"sh/3uxkvihs","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1180,684,28,16]}
+{"kind":"image","id":"im/fud83qlc","slide":4,"name":"","geometry":"roundRect","bbox":[72,190,710,430]}
+{"kind":"notes","id":"nt/vxc7mz","slide":4,"text":""}
+{"kind":"slide","id":"sl/vbhrj9","slide":5,"title":"OPERATIONAL WORKFLOW","textShapes":6}
+{"kind":"textbox","id":"sh/bih8vy18","slide":5,"text":"OPERATIONAL WORKFLOW","textPreview":"OPERATIONAL WORKFLOW","textChars":20,"textLines":1,"bbox":[72,38,520,22]}
+{"kind":"textbox","id":"sh/cja94jit","slide":5,"text":"Work becomes visible, assignable, and auditable","textPreview":"Work becomes visible, assignable, and auditable","textChars":47,"textLines":1,"bbox":[72,72,1120,58]}
+{"kind":"textbox","id":"sh/xkjqxoje","slide":5,"text":"The operating model follows the lifecycle of a real maintenance request.","textPreview":"The operating model follows the lifecycle of a real maintenance request.","textChars":72,"textLines":1,"bbox":[72,136,1060,40]}
+{"kind":"textbox","id":"sh/k7a983i5","slide":5,"text":"Work Orders → Work Board → completion history","textPreview":"Work Orders → Work Board → completion history","textChars":45,"textLines":1,"bbox":[72,620,700,22]}
+{"kind":"textbox","id":"sh/l8jq18ja","slide":5,"text":"HM TaskManager  |  Executive overview","textPreview":"HM TaskManager  |  Executive overview","textChars":37,"textLines":1,"bbox":[72,684,500,16]}
+{"kind":"textbox","id":"sh/e9o7u90f","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1180,684,28,16]}
+{"kind":"image","id":"im/fqpcbmh0","slide":5,"name":"","geometry":"roundRect","bbox":[72,205,540,390]}
+{"kind":"image","id":"im/upgbih0f","slide":5,"name":"","geometry":"roundRect","bbox":[660,205,548,390]}
+{"kind":"notes","id":"nt/vbhrj9","slide":5,"text":""}
+{"kind":"slide","id":"sl/d3nb0j","slide":6,"title":"MANAGEMENT INTELLIGENCE","textShapes":7}
+{"kind":"textbox","id":"sh/vihwbu94","slide":6,"text":"MANAGEMENT INTELLIGENCE","textPreview":"MANAGEMENT INTELLIGENCE","textChars":23,"textLines":1,"bbox":[72,38,520,22]}
+{"kind":"textbox","id":"sh/wjqd4zap","slide":6,"text":"The dashboard turns activity into a management conversation","textPreview":"The dashboard turns activity into a management conversation","textChars":59,"textLines":1,"bbox":[72,72,1120,58]}
+{"kind":"textbox","id":"sh/xkzed4ra","slide":6,"text":"Leaders see the health of the operation without opening every work order.","textPreview":"Leaders see the health of the operation without opening every work order.","textChars":73,"textLines":1,"bbox":[72,136,1060,40]}
+{"kind":"shape","id":"sh/nexc7u98","slide":6,"bbox":[875,200,330,385]}
+{"kind":"textbox","id":"sh/8fqd0fat","slide":6,"text":"Questions leadership can answer","textPreview":"Questions leadership can answer","textChars":31,"textLines":1,"bbox":[905,235,270,50]}
+{"kind":"textbox","id":"sh/9gzu9kre","slide":6,"text":"• What is open now?\n• Where is work accumulating?\n• Which assets drive repeat attention?\n• Are teams completing work on time?\n• Which hotel needs support?","textPreview":"• What is open now? | • Where is work accumulating? | • Which assets drive repeat attention? | • Are teams completing work on time? | • W...","textChars":154,"textLines":5,"bbox":[905,320,260,170]}
+{"kind":"textbox","id":"sh/69sva9sr","slide":6,"text":"HM TaskManager  |  Executive overview","textPreview":"HM TaskManager  |  Executive overview","textChars":37,"textLines":1,"bbox":[72,684,500,16]}
+{"kind":"textbox","id":"sh/ra1wje9c","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1180,684,28,16]}
+{"kind":"image","id":"im/z6t4bmd0","slide":6,"name":"","geometry":"roundRect","bbox":[72,185,760,440]}
+{"kind":"notes","id":"nt/d3nb0j","slide":6,"text":""}
+{"kind":"slide","id":"sl/5qxnwb","slide":7,"title":"MASTER DATA THAT MAKES WORK ACTIONABLE","textShapes":6}
+{"kind":"textbox","id":"sh/5cnuhcbu","slide":7,"text":"MASTER DATA THAT MAKES WORK ACTIONABLE","textPreview":"MASTER DATA THAT MAKES WORK ACTIONABLE","textChars":38,"textLines":1,"bbox":[72,38,520,22]}
+{"kind":"textbox","id":"sh/i9wb6xc3","slide":7,"text":"Locations, categories, and assets give every work order context","textPreview":"Locations, categories, and assets give every work order context","textChars":63,"textLines":1,"bbox":[72,72,1120,58]}
+{"kind":"textbox","id":"sh/ja5cf2do","slide":7,"text":"The maintenance model is deliberately simple: define the place, the type of work, and the thing being maintained.","textPreview":"The maintenance model is deliberately simple: define the place, the type of work, and the thing being maintained.","textChars":113,"textLines":1,"bbox":[72,136,1060,40]}
+{"kind":"textbox","id":"sh/7ypcjmt0","slide":7,"text":"Real screens from the HM test hotel: categories, assets, and locations are linked to the same operating context.","textPreview":"Real screens from the HM test hotel: categories, assets, and locations are linked to the same operating context.","textChars":112,"textLines":1,"bbox":[72,580,1000,26]}
+{"kind":"textbox","id":"sh/g3ytgruh","slide":7,"text":"HM TaskManager  |  Executive overview","textPreview":"HM TaskManager  |  Executive overview","textChars":37,"textLines":1,"bbox":[72,684,500,16]}
+{"kind":"textbox","id":"sh/h47upwb2","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1180,684,28,16]}
+{"kind":"image","id":"im/58f6hk3u","slide":7,"name":"","geometry":"roundRect","bbox":[72,210,360,330]}
+{"kind":"image","id":"im/k7mpofm9","slide":7,"name":"","geometry":"roundRect","bbox":[460,210,360,330]}
+{"kind":"image","id":"im/j6dofalo","slide":7,"name":"","geometry":"roundRect","bbox":[848,210,360,330]}
+{"kind":"notes","id":"nt/5qxnwb","slide":7,"text":""}
+{"kind":"slide","id":"sl/0a4nbn","slide":8,"title":"EXECUTIVE CONCLUSION","textShapes":12}
+{"kind":"textbox","id":"sh/pcvel0jm","slide":8,"text":"EXECUTIVE CONCLUSION","textPreview":"EXECUTIVE CONCLUSION","textChars":20,"textLines":1,"bbox":[72,38,520,22]}
+{"kind":"textbox","id":"sh/294falkv","slide":8,"text":"HM TaskManager is a practical operating layer for hotel maintenance","textPreview":"HM TaskManager is a practical operating layer for hotel maintenance","textChars":67,"textLines":1,"bbox":[72,72,1120,58]}
+{"kind":"textbox","id":"sh/3adwjq1g","slide":8,"text":"It preserves company security while giving teams a modern, measurable workflow.","textPreview":"It preserves company security while giving teams a modern, measurable workflow.","textChars":79,"textLines":1,"bbox":[72,136,1060,40]}
+{"kind":"textbox","id":"sh/cz6xgv2x","slide":8,"text":"For leadership","textPreview":"For leadership","textChars":14,"textLines":1,"bbox":[90,225,220,24]}
+{"kind":"textbox","id":"sh/d0fyp0ji","slide":8,"text":"Standardize the operating model across hotels without losing local accountability.","textPreview":"Standardize the operating model across hotels without losing local accountability.","textChars":82,"textLines":1,"bbox":[90,260,420,70]}
+{"kind":"textbox","id":"sh/qdofe5kr","slide":8,"text":"For operations","textPreview":"For operations","textChars":14,"textLines":1,"bbox":[650,225,220,24]}
+{"kind":"textbox","id":"sh/ryxwnq1c","slide":8,"text":"Make every request visible, owned, and traceable from intake to completion.","textPreview":"Make every request visible, owned, and traceable from intake to completion.","textChars":75,"textLines":1,"bbox":[650,260,420,70]}
+{"kind":"textbox","id":"sh/s32x4b2t","slide":8,"text":"For IT & governance","textPreview":"For IT & governance","textChars":19,"textLines":1,"bbox":[90,420,220,24]}
+{"kind":"textbox","id":"sh/t4bedgje","slide":8,"text":"Keep authorization anchored to the authenticated company and existing security assignments.","textPreview":"Keep authorization anchored to the authenticated company and existing security assignments.","textChars":91,"textLines":1,"bbox":[90,455,420,70]}
+{"kind":"textbox","id":"sh/5wn21kr2","slide":8,"text":"Next step","textPreview":"Next step","textChars":9,"textLines":1,"bbox":[650,420,220,24]}
+{"kind":"textbox","id":"sh/4ve18fqh","slide":8,"text":"Validate with one hotel, confirm operating KPIs, then scale by repeatable configuration.","textPreview":"Validate with one hotel, confirm operating KPIs, then scale by repeatable configuration.","textChars":88,"textLines":1,"bbox":[650,455,420,70]}
+{"kind":"textbox","id":"sh/ju5kza9w","slide":8,"text":"HM TaskManager  |  Executive briefing","textPreview":"HM TaskManager  |  Executive briefing","textChars":37,"textLines":1,"bbox":[72,660,500,18]}
+{"kind":"notes","id":"nt/0a4nbn","slide":8,"text":""}
