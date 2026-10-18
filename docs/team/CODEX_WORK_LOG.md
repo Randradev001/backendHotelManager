@@ -1,5 +1,97 @@
 # Log de Trabajo - OpenAI Codex
 
+### 2026-10-18 - Revision de frontend Vercel actual
+
+* **Consulta:** Revisada la publicacion actual: HTML ya referencia recursos desde /js y /css, sin prefijo /free. Configuracion local de Vercel mantiene API del mismo origen y falta el destino publico Railway para incorporar el proxy. Sin cambios funcionales ni despliegue.
+
+
+### 2026-10-18 - SQL Server en Railway
+
+* **Consulta:** Confirmada la opcion de desplegar la imagen oficial SQL Server como servicio separado del backend Node.js, con volumen /var/opt/mssql y conexion privada. Explicada la necesidad de restaurar HotelManagerDB y elegir Express o licencia de produccion, sin asumir que una plantilla Developer sirve para produccion. No se crearon servicios remotos.
+
+
+### 2026-10-18 - Configuracion Vercel y Railway Node.js
+
+* **Correccion de alcance:** Usuario confirma frontend Vercel y backend Railway sin Docker propio. Se conserva la configuracion Docker anterior como alternativa, sin aplicarla al servicio actual.
+* **Preparacion:** Ejemplo de variables deploy/railway-node.env.example para el servicio Node.js existente, con origen Vercel, sesiones y destino SQL pendiente. Conservada la compatibilidad de la opcion TLS heredada.
+* **Pendientes:** URL publica Railway y ubicacion de SQL Server para completar el proxy Vercel y la conectividad. No se publicaron cambios ni se configuraron servicios de pago.
+
+
+### 2026-10-15 - Esquema de despliegue en Railway
+
+* **Consulta:** Explicado frontend Vercel con proxy hacia backend Railway y SQL Server como servicio separado en red privada con volumen persistente. Se requiere adaptar Dockerfile seleccionado, variables, persistencia y restaurar HotelManagerDB; no se presento SQL Server como servicio administrado nativo.
+* **Estado:** Documentacion oficial de Railway consultada; ninguna cuenta, servicio de pago o despliegue creado.
+
+
+### 2026-10-15 - Alternativas de alojamiento Docker
+
+* **Consulta:** Revisadas fuentes oficiales de DigitalOcean, Hetzner, Railway y requisitos SQL Server para alternativas al servidor compartido. VPS Linux x86-64 conserva el Compose; plataformas administradas requieren adaptar servicios, red y persistencia. Sin contratacion ni despliegue.
+
+
+### 2026-10-14 - Identificacion del servidor remoto
+
+* **Entrada:** Usuario identifica 190.3.171.48 como servidor de CONEX/APERP.
+* **Comprobacion de solo lectura:** HTTP 80 responde 200 y Microsoft-IIS/10.0. HTTPS 443 no valida la cadena; inspeccion de metadatos del certificado muestra Cloudflare Origin CA para *.busapp.cl y busapp.cl. No se enviaron credenciales ni se modificaron servicios remotos.
+* **Pendiente:** Confirmar control del dominio y disponibilidad de Linux/Docker o VM para el Compose preparado. No se configuro Vercel contra HTTPS por IP con certificado no confiable. Guia actualizada con estos limites.
+
+
+### 2026-10-14 - Pantalla blanca en frontend publicado en Vercel
+
+* **Evidencia remota:** https://front-hotel-manager-mu.vercel.app devuelve HTML con recursos /free/js/index-Xze-4F6d.js y /free/css/index-DMouZ4Os.css, ambos 404; /js/index-Xze-4F6d.js responde 200. /login y /free/ tambien respondian 404.
+* **Correccion local frontend:** Creado vercel.json activo que compila con base / y API del mismo origen, instala con npm ci y aplica fallback de React excluyendo /backendDocker. Router alineado a import.meta.env.BASE_URL; cliente API usa / como valor de produccion predeterminado. Plantilla con proxy actualizada; el proxy real sigue pendiente de direccion HTTPS del backend.
+* **Docker/documentacion:** APP_ORIGIN del ejemplo de servidor actualizado con el dominio Vercel proporcionado. Guia distingue dominio frontend de destino SQL/API y explica que se requiere subir cambios y volver a desplegar.
+* **Verificacion:** Build con el comando exacto de vercel.json aprobado; manifest PWA en / y HTML sin referencias /free. Navegador Chromium aislado contra el build local: / y /login muestran el formulario de acceso sin errores JavaScript, simulando API no desplegada con respuesta 404. Separacion de rutas SPA/API y git diff --check aprobados. No se modificaron datos ni reglas de negocio; no se publico ni se conecto el servidor remoto. Se preservaron los cambios preexistentes, incluido package-lock.json del frontend.
+
+
+### 2026-10-10 - Preparacion Docker aislado y frontend Vercel
+
+* **Alcance final:** Backend y SQL Server dedicados para convivir con CONEX/APERP; frontend preferentemente en Vercel. Compose independiente, red privada, volumen SQL propio y API publicada solo en loopback 3088. Perfil web opcional en 8088 sin ocupar 80/443. Ningun despliegue remoto, backup o restauracion ejecutado.
+* **Archivos:** compose.server.yml, deploy/Dockerfile, ejemplo de entorno, guia y asistente explicito backup/restore de HotelManagerDB (rechaza sobrescritura). En frontend: Dockerfile/Caddy opcionales, plantilla Vercel con proxy de API y exclusion de entornos del contexto Docker. Manifest PWA ahora respeta VITE_APP_BASE_NAME para publicar en / o /free/.
+* **Verificacion:** Compose validado; imagen backend construida con npm ci y prueba HTTP /ping en contenedor sin red aprobada; 12/12 pruebas backend. Compilacion frontend con variables de Vercel aprobada y manifest start_url/scope verificados en /. git diff --check aprobado en ambos repositorios. Imagen construida localmente en ARM; construir en el servidor Linux x86-64 para produccion. Perfil web Docker y flujo backup/restore no probados integralmente.
+* **Pendientes:** Endpoint HTTPS publico del backend/proxy existente, URL Vercel y datos de servidor por confirmar. SQL no se inicializa con demos automaticamente. Auditoria de npm durante build reporta 32 vulnerabilidades (2 criticas, 18 altas, 9 moderadas y 3 bajas); no se realizaron actualizaciones forzadas. Revisar dependencias y usar credencial SQL dedicada antes del despliegue definitivo; configuracion inicial usa sa en red privada.
+
+
+### 2026-10-10 - Conexion SQL confirmada tras iniciar Docker
+
+* **Verificacion:** Contenedor sqlserver2022 activo, puerto publicado 127.0.0.1:1433. `node scripts/test-aperp-connection.js` finalizo correctamente con el entorno actual: base HotelManagerDB, 25 tablas.
+* **Resultado:** Resuelto el bloqueo de conectividad local al iniciar Docker. Sin cambios en configuracion, credenciales o datos; login de aplicacion no probado en esta verificacion.
+
+
+### 2026-10-10 - Diagnostico de conexion SQL local
+
+* **Resultado:** El entorno apunta a localhost / HotelManagerDB y ya contiene usuario y clave sin marcadores. Prueba TCP a 127.0.0.1:1433 devuelve ECONNREFUSED: no hay servicio aceptando conexiones en ese destino. Docker CLI instalado, pero su daemon no esta disponible.
+* **Pendiente:** Confirmar donde reside HotelManagerDB (servidor remoto o entorno local) antes de cambiar el destino o provisionar una base. No se modificaron credenciales ni datos.
+
+
+### 2026-10-10 - Consulta de acceso de prueba
+
+* **Accion:** Identificado el acceso administrador de prueba AANDRADE por correo en el instalador standalone, linea 62, para hotel 6002. Se informo la credencial inicial solicitada sin modificar usuarios ni claves.
+* **Limite:** Evidencia de scripts de instalacion; no se verifico que la clave siga vigente en la base de datos activa.
+
+
+### 2026-10-10 - Reparacion de dependencias nativas del frontend en macOS
+
+* **Problema:** Vite no iniciaba en Node 20.19.1 / darwin arm64 por ausencia de @rollup/rollup-darwin-arm64 para Rollup 4.59.0.
+* **Accion:** Ejecutado en el frontend `npm install --no-save --package-lock=false @rollup/rollup-darwin-arm64@4.59.0`. npm recompuso node_modules (21 paquetes agregados, 32 eliminados y 583 cambiados); no se modificaron manifiesto ni archivos lock. Se preservo la modificacion previa de yarn.lock.
+* **Verificacion:** Build de produccion y generacion PWA aprobados. Vite iniciado con puerto explicito 5173 para evitar colision con backend 3000; respuesta HTTP 200 en /free/. Servidor de desarrollo dejado activo.
+* **Observacion:** npm reporto cinco vulnerabilidades de dependencias (una baja, cuatro altas); no se aplicaron actualizaciones forzadas ajenas a la reparacion.
+
+
+### 2026-10-10 - Configuracion local de entorno
+
+* **Cambio:** Creado `.env` local con puerto 3000, origenes frontend de desarrollo, base HotelManagerDB, sesiones y rol ADMINFULL. Host localhost como supuesto explicito; usuario y clave SQL quedan como marcadores a completar. No se reutilizaron credenciales de la configuracion PM2 heredada de otra base.
+* **Compatibilidad:** Documentada en el archivo la interpretacion invertida de SQLSERVER_ENCRYPT en el conector actual; no se modifico codigo funcional.
+* **Verificacion:** Archivo parseado mediante dotenv; permisos locales 0600. Conexion a SQL pendiente de completar los datos reales.
+
+
+### 2026-10-10 - Inspeccion general del proyecto
+
+* **Alcance:** Estudio de arquitectura backend, rutas, servicios, autenticacion, autorizacion, migraciones SQL y documentacion; lectura complementaria del frontend vecino (rutas, sesion, API y ubicaciones). Sin cambios funcionales ni ejecucion de migraciones.
+* **Modelo actual:** Hotel Manager de mantenimiento sobre SQL Server, con dashboard, ubicaciones, categorias, activos, ordenes y tareas jerarquicas. Conserva seguridad GeneXus y rutas maestras CONEX/APERP. La documentacion establece HotelManagerDB y acceso multi-hotel mediante ADMINFULL o HMUSERHOTELACCESS.
+* **Hallazgos por lectura de codigo:** (1) La API frontend elimina locationId del cuerpo al actualizar una ubicacion, pero el controlador no incorpora req.params.locationId y el servicio lo exige. (2) saveWorkOrder persiste cabecera/evento antes de guardar tareas en otra transaccion: un error posterior puede dejar cambios parciales. (3) La edicion directa acepta estados sin aplicar el grafo de transitionWorkOrder. (4) Varias rutas maestras exigen sesion, pero no permiso de programa. (5) SQLSERVER_ENCRYPT compara contra 'false', invirtiendo el significado de la opcion. (6) getSession no rechaza UsuEstado inactivo; la vista instalada tampoco lo filtra. Estos hallazgos requieren correccion/verificacion especifica; no se ejecutaron reproducciones contra SQL Server.
+* **Verificacion:** `node --test test/*.test.js`: 12/12 aprobadas; carga del router raiz correcta. La suite revisada cubre seguridad y configuracion de maestros, sin pruebas especificas de Hotel Manager. Host/base/instancia SQL no definidos en el proceso local, por lo que no se valido operacion integrada. El cambio previo en yarn.lock se preservo.
+
+
 ### 2026-08-19 - Canadian email-based login
 
 * **Authentication:** Replaced RUT lookup with normalized, case-insensitive `UsuCorreo` lookup while preserving password migration, sessions, roles, permissions and company isolation.

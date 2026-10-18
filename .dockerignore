@@ -1,1 +1,9 @@
 node_modules
+.git
+.env
+.env.*
+deploy/.env.server
+outputs
+*.bak
+*.log
+ecosystem.config.js
